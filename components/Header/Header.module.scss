@@ -1,3 +1,40 @@
+@keyframes borderColor {
+    0% {
+        border-image-source: linear-gradient(0deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    10% {
+        border-image-source: linear-gradient(36deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    20% {
+        border-image-source: linear-gradient(72deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    30% {
+        border-image-source: linear-gradient(108deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    40% {
+        border-image-source: linear-gradient(144deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    50% {
+        border-image-source: linear-gradient(180deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    60% {
+        border-image-source: linear-gradient(216deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    70% {
+        border-image-source: linear-gradient(252deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    80% {
+        border-image-source: linear-gradient(288deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    90% {
+        border-image-source: linear-gradient(324deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+    100% {
+        border-image-source: linear-gradient(360deg, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+    }
+}
+
+
 .header {
     width: 100%;
     min-height: 100px;
@@ -38,6 +75,22 @@
                     li {
                         margin-left: 25px;
                         list-style-type: none;
+                        position: relative;
+                        &::after {
+                            content: '';
+                            width: 0%;
+                            transition: 0.6s;
+                            position: absolute;
+                            background-color: white;
+                            height: 2px;
+                            left: 0;
+                            bottom: -6px;
+                        }
+                        &:hover {
+                            &::after {
+                                width: 100%;
+                            }
+                        }
                         a {
                             text-decoration: none;
                             font-size: 18px;  
@@ -80,15 +133,16 @@
                     text-transform: uppercase;
                     border: 6px solid;
                     border-image-slice: 1;
-                    border-width: 3px;
-                    border-image-source: linear-gradient(to left, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+                    border-width: 4px;
+                    // border-image-source: linear-gradient(to left, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
                     padding: 10px 40px;
-                    transition: 0.8s all linear;
                     font-size: 18px;                  
                     color: #fff;  
+                    // animation: borderColor infinite;
+                    animation: borderColor 3s infinite;
                     &:hover {
                         cursor: pointer;
-                        border-image-source: linear-gradient(to left, rgba(255, 211, 13, 1), rgba(13, 101, 188, 1));
+                        // border-image-source: linear-gradient(to left, rgba(255, 211, 13, 1), rgba(13, 101, 188, 1));
                     }
                 }
             }

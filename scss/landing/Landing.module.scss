@@ -51,7 +51,7 @@
         .wrapper {
             display: flex;
             align-items: center;
-            max-width: 1440px;
+            max-width: 1220px;
             flex-direction: column;
             .top {
                 margin-top: 100px;
@@ -99,6 +99,9 @@
                     align-items: flex-start;
                     margin-left: 30px;
                     padding-top: 10px;
+                    img {
+                        border: 2px solid #000;
+                    }
                 }
             }
         }
@@ -114,7 +117,7 @@
             display: flex;
             width: 100%;
             align-items: center;
-            max-width: 1440px;
+            max-width: 1220px;
             flex-direction: column;
             .top {
                 margin-top: 100px;
@@ -175,6 +178,150 @@
                     &:nth-child(even) {
                         box-shadow: 10px 10px #FFD700;
                     }
+                }
+            }
+        }
+    }
+
+    .zvit {
+        display: flex;
+        width: 100%;
+        height: 800px;
+        background-color: yellow;
+    }
+
+    .inventors {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 100px;
+        width: 100%;
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            max-width: 1220px;
+            flex-direction: column;
+            .top {
+                margin-top: 100px;
+                display: flex;
+                flex-direction: column;
+                text-align-last: left;
+                width: 100%;
+                h1 {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 62px;
+                }
+                p {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 18px;
+                    color: #828282;
+                }
+            }
+
+            .content {
+                margin-top: 45px;
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: space-between;
+                .card {
+                    display: flex;
+                    flex-direction: column;
+                    width: 22.5%;
+                    margin-bottom: 40px;
+                    &:nth-child(odd) {
+                        .image {
+                            img {
+                                border: 2px solid #000;
+                                width: 100%;
+                                box-shadow: 8px 8px #0057B8;
+                            }
+                        }
+                    }
+
+                    &:nth-child(even) {
+                        .image {
+                            img {
+                                width: 100%;
+                                border: 2px solid #000;
+                                box-shadow: 8px 8px #FFD700;
+                            }
+                        }
+                    }
+                    .image {
+                      img {
+                        width: 100%;
+                      }
+                    }
+      
+                    p {
+                        font-family: 'boldBrains', sans-serif;
+                        font-size: 24px;
+                        font-weight: 600;
+                        padding: 0;
+                        margin: 10px 0;
+                    }
+      
+                    a {
+                      img {
+                        
+                      }
+                    }
+                  }
+            }
+        }
+    }
+
+    .partners {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 100px;
+        width: 100%;
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            max-width: 1220px;
+            flex-direction: column;
+            .top {
+                margin-top: 100px;
+                display: flex;
+                flex-direction: column;
+                text-align-last: left;
+                width: 100%;
+                h1 {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 62px;
+                }
+                p {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 18px;
+                    color: #828282;
+                }
+            }
+
+            .content {
+                display: flex;
+                width: 100%;
+                height: 500px;
+                .customSlider {
+                    margin-top: 40px;
+                    display: flex;
+                    align-items: center;
+                }
+                .customSlide {
+                    display: flex;
+                    align-items: center;
                 }
             }
         }

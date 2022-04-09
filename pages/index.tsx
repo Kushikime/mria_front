@@ -8,6 +8,10 @@ import styles from  '../scss/landing/Landing.module.scss';
 import Header from '../components/Header'
 import Link from 'next/link'
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
+
 const Landing: NextPage = () => {
   const dispatch = useAppDispatch();
 
@@ -33,7 +37,7 @@ const Landing: NextPage = () => {
             Your browser does not support the video tag.
           </video>
           <div className={styles.videoContent}>
-            <p>Доброго дня! <br /> Ми з України</p>
+            <p>Доброго дня! <br /> Ми з України <img src="/assets/images/ua_flag.png" alt="" />   🇺🇦</p>
           </div>
         </div>
 
@@ -86,8 +90,8 @@ const Landing: NextPage = () => {
               </div>
               <div className={styles.card}>
                 <h2>Реалізовані проекти</h2>
-                <p>Тільки за <span>15</span> днів діяльності ВГ «До Мрії» вдалося зібрати  більше ніж 1 млн.грн. 
-                  З них закуплено медичних засобів більше ніж на <span>176 000</span> грн, військового спорядження більше ніж на 860 000 грн, речей першої необхідності для військових підрозділів більше ніж на <span>110 000</span> грн.
+                <p>Тільки за <span>15</span> днів діяльності ВГ «До Мрії» вдалося зібрати  більше ніж <span>1</span> млн.грн. 
+                  З них закуплено медичних засобів більше ніж на <span>176 000</span> грн, військового спорядження більше ніж на <span>860 000</span> грн, речей першої необхідності для військових підрозділів більше ніж на <span>110 000</span> грн.
                   На разі групою зібрано понад <span>2</span> млн. грн., які направлено на потреби наших захисників.
                   <br />
                   Вся актуальна інформація по звітах – у нашому <a href="#">телеграм-каналі</a>
@@ -98,6 +102,147 @@ const Landing: NextPage = () => {
         </div>
 
 
+        <div className={styles.zvit}></div>
+
+        <div className={styles.inventors}>
+          <div className={styles.wrapper}>
+            <div className={styles.top}>
+              <h1>Засновники проекту</h1>
+              <p>Всього ВГ “ДО МРІЇ” налічує близько 100 волонтерів, які виконують різні функції на території різних країн (Україна Румунія, Німеччина, Бельгія, Ірландія  та ін.)</p>
+            </div>
+
+            <div className={styles.content}>
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+
+              <div className={styles.card}>
+                <div className={styles.image}>
+                  <img src="/assets/images/plotnikova.png" alt="" />
+                </div>
+                <p>Плотнікова Марина</p>
+                <a href="#">
+                  <img src="/assets/images/face.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div className={styles.partners}>
+        <div className={styles.wrapper}>
+          <div className={styles.top}>
+            <h1>Партнери</h1>
+            <p>Всього ВГ “ДО МРІЇ” налічує близько 100 волонтерів, які виконують різні функції на території різних країн (Україна Румунія, Німеччина, Бельгія, Ірландія  та ін.)</p>
+          </div>
+
+          <div className={styles.content}>
+            <Swiper
+              spaceBetween={50}
+              className={styles.customSlider}
+              slidesPerView={3}
+              // slideClass={styles.customSlide}
+              autoplay={{
+                  delay: 200
+              }}
+            >
+              <SwiperSlide>
+                <img src="/assets/images/partner1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner2.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner2.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner2.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner2.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="/assets/images/partner1.png" alt="" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
+        </div>
+      </div>
       {/* While loading show animated preloader maybe the logo on white background will do a heartbeat animation */}
       {/* After page is loaded opcaity 0 and stop animation or maybe stop animation and move the preloader out of the webpage frame. */}
 

@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import styles from './Header.module.scss';
 
 interface IHeaderProps {
-
+    onHelpClick?: () => void;
 }
 
-const Header = (props: IHeaderProps) => {
 
+
+
+
+const Header = (props: IHeaderProps) => {
     return (
         <div className={styles.header}>
             <div className={styles.wrapper}>
