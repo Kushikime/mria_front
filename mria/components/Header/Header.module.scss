@@ -1,0 +1,32 @@
+.header {
+    width: 100%;
+    min-height: 100px;
+    height: 100px;
+    background-color: rgba(0,0,0, 0.2);
+    padding: 0 120px;
+    box-sizing: border-box;
+    .wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        max-width: 1440px;
+        .logo {
+            background-color: red;
+        }
+
+        .content {
+            background-color: blue;
+            ul {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .btn {
+            background-color: yellow;
+        }
+    }
+}
