@@ -6,6 +6,7 @@ import '../scss/app.global.scss';
 const store = setupStore();
 
 function MyApp({ Component, pageProps }: AppProps) {
+  //IF AUTHED REDIRECT TO THE ADMIN PANEL?
   return (
     <Provider store={store}>
       <Component {...pageProps} />

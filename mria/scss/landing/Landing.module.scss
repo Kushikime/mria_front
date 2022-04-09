@@ -5,4 +5,247 @@
     background-color: rgb(255, 255, 255);
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    position: relative;
+    .videoWrap {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        position: relative;
+        align-items: center;
+        z-index: 0;
+        video {
+            top: 0;
+            position: absolute;
+            width: 100%;
+            max-height: 90vh;
+            object-fit: cover;
+        }
+        .videoContent {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 90vh;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            p {
+                color: #fff;
+                text-align: center;
+                font-family: 'jetBrains', sans-serif;
+                font-size: 64px;
+                margin-top: -140px;
+            }
+        }
+    }
+
+    .who_we_are {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 100px;
+        .wrapper {
+            display: flex;
+            align-items: center;
+            max-width: 1440px;
+            flex-direction: column;
+            .top {
+                margin-top: 100px;
+                display: flex;
+                flex-direction: column;
+                text-align-last: left;
+                width: 100%;
+                h1 {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 62px;
+                }
+                p {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 18px;
+                    color: #828282;
+                }
+            }
+            .content {
+                margin-top: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .left {
+                    height: 100%;
+                    width: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    text-align-last: left;
+                    p {
+                        margin: 0;
+                        padding: 0;
+                        font-family: 'dia', sans-serif;
+                        font-size: 22px;
+                        line-height: 36px;
+                        margin-bottom: 20px;
+                    }
+                }
+                .right {
+                    height: 100%;
+                    display: flex;
+                    align-items: flex-start;
+                    margin-left: 30px;
+                    padding-top: 10px;
+                }
+            }
+        }
+    }
+
+    .what_we_do {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 100px;
+        width: 100%;
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            max-width: 1440px;
+            flex-direction: column;
+            .top {
+                margin-top: 100px;
+                display: flex;
+                flex-direction: column;
+                text-align-last: left;
+                width: 100%;
+                h1 {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 62px;
+                }
+                p {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'jetBrains', sans-serif;
+                    font-size: 18px;
+                    color: #828282;
+                }
+            }
+
+            .content {
+                margin-top: 35px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .card {
+                    border: 2px solid #000;
+                    z-index: 0;
+                    h2 {
+                        font-family: 'jetBrains', sans-serif;
+                        font-size: 36px;
+                    }
+                    p {
+                        font-family: 'dia', sans-serif;
+                        font-size: 24px;
+                        line-height: 34px;
+                        span {
+                            font-weight: 600;
+                        }
+                        a {
+                            text-decoration: underline;
+                            color: #000;
+                            font-weight: 600;
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    margin-bottom: 50px;
+                    padding: 0 20px;
+                    position: relative;
+                    background-color: white;
+                    &:nth-child(odd) {
+                        box-shadow: 10px 10px #0057B8;
+                    }
+                    &:nth-child(even) {
+                        box-shadow: 10px 10px #FFD700;
+                    }
+                }
+            }
+        }
+    }
+
+    .social {
+        position: fixed;
+        right: 0;
+        top:40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .telegram, .instagram, .facebook {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            margin-bottom: 25px;
+            position: relative;
+            * {
+                transition: 0.2s all linear;
+            }
+            img {
+                z-index: 10;
+                background-color: #fff;
+                padding: 15px;
+                width: 20px;
+                height: 20px;
+            }
+            .before {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: -6px;
+                top: -6px;
+                padding: 15px;
+                background-color: black;
+                z-index: 0;
+            }
+            .after {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                right: -6px;
+                bottom: -6px;
+                padding: 15px;
+                background-color: black;
+                z-index: 0;
+            }
+            z-index: 10;
+            &:hover {
+                cursor: pointer;
+                .before {
+                    left: 0;
+                    top: 0;
+                }
+                .after {
+                    right: 0;
+                    bottom: 0;
+                }
+            }
+        }
+
+        .telegram {
+
+        }
+        .instagram {
+            
+        }
+        .facebook {
+            
+        }
+    }
 }
