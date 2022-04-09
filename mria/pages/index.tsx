@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { appSlice } from '../store/reducers/AppSlice'
+
 import styles from  '../scss/landing/Landing.module.scss';
 import Header from '../components/Header'
 import Link from 'next/link'

@@ -7,6 +7,18 @@ const store = setupStore();
 
 function MyApp({ Component, pageProps }: AppProps) {
   //IF AUTHED REDIRECT TO THE ADMIN PANEL?
+
+  // url === 'panel' {
+  //   if(authorized) {
+  //     leftNav
+  //     <Component {...pageProps} />
+  //   } else {
+  //     redirect
+  //   }
+  // }
+
+
+
   return (
     <Provider store={store}>
       <Component {...pageProps} />
