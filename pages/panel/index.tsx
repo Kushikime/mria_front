@@ -1,18 +1,17 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react';
 
 
 
 const Panel: NextPage = () => {
-  
   const router = useRouter();
-  const path = router?.asPath;
 
-  return (
-    <div>
-      <h1>PANEL</h1>
-    </div>
-  )
+  useEffect(() => {
+    router.push('/panel/expenses');
+  }, []);
+
+  return null;
 }
 
 export default Panel
