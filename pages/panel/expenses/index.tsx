@@ -10,7 +10,7 @@ const Test: NextPage = () => {
 
   return (
     <div>
-      <h1>Test under panel</h1>
+      <h1>Expenses</h1>
     </div>
   )
 }

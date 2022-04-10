@@ -10,16 +10,86 @@ import Link from 'next/link'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { useEffect, useState } from 'react'
+import { io, Socket } from 'socket.io-client'
+import Toast from '../components/Toast'
 
+interface IncomeToast {
+  id: string
+  amount: number
+  amountUah: number
+  currency: string
+  date: string
+  owner: string
+  closed: boolean
+}
 
 const Landing: NextPage = () => {
   const dispatch = useAppDispatch();
 
   const {isLoading} = useAppSelector(state => state.AppReducer);
   const {toggleAppLoading} = appSlice.actions;
+  
 
   const router = useRouter();
   const path = router?.asPath;
+
+  const [socketActive, setSocketActive] = useState(false);
+
+  const [toasts, setToasts] = useState<Array<IncomeToast>>([]);
+
+  const [counter, setCounter] = useState(0)
+
+  const deleteToast = (id: string) => {
+    let list = toasts
+    const index = toasts.findIndex(e => e.id === id);
+
+    
+    list[index].closed = true;
+    setToasts([...list]);
+
+
+    list.splice(index, 1);
+    setToasts([...list]);
+  }
+  
+  useEffect(() => {
+    setSocketActive(true);
+    
+    const newSocket = io('https://c8e5-2a00-1028-8380-96ba-8fa2-907f-27e-b33e.ngrok.io', {
+      transports: [
+        'websocket'
+      ]
+    });
+
+    newSocket.on("connect", () => {
+      console.log("CONNECT")
+    });
+
+    newSocket.on("INCOME", (res: IncomeToast) => setToasts((prev) => {
+      let items = prev;
+
+
+
+      if(prev.length > 3) {
+        return [...items.slice(1), {...res, id: Date.now().toString()}]
+      }
+
+      return [...items, {...res, id: Date.now().toString()}]
+    }));
+
+    
+    return () => {
+      newSocket.off("connect", () => {
+        console.log("DISCONNECT")
+      });
+      newSocket.off("INCOME", () => {
+        console.log("INCOME OFF")
+      });
+      newSocket.close()
+    }
+  }, []);
+
 
   return (
     <div className={styles.landing}>
@@ -252,6 +322,8 @@ const Landing: NextPage = () => {
 
       {/* else show 404 page or do a redirect for the landing page */}
 
+
+      <Toast onDelete={deleteToast} toastList={toasts} />
 
       <div className={styles.social}>
         <Link prefetch={true} href={'https://www.instagram.com/naruto/'}>

@@ -13,6 +13,16 @@
     src: url("/assets/fonts/e-Ukraine/e-Ukraine-Regular.otf") format("opentype");
 }
 
+@font-face {
+    font-family: 'Gilroy-ExtraBold';
+    src: url("/assets/fonts/Gilroy/Gilroy-ExtraBold.otf");
+}
+
+@font-face {
+    font-family: 'Gilroy-Light';
+    src: url("/assets/fonts/Gilroy/Gilroy-Light.otf");
+}
+
 html, body {
     display: flex;
     padding: 0;
