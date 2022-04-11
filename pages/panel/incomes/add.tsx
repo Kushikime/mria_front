@@ -11,7 +11,7 @@ const Add: NextPage = () => {
       <AdminAddHeader page={'incomes'} />
       <div className={styles.createForm}>
         <p>ФІО</p>
-        <input type='text' placeholder='Іван Іванович Іванов' />
+        <input type='text' placeholder='Іванов Іван Іванович' />
         <p>Сума</p>
         <input type='text' placeholder='0.00' />
         <p>Валюта</p>
