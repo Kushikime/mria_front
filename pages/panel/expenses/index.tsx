@@ -9,7 +9,6 @@ const Expenses: NextPage = () => {
 
   return (
     <div className={styles.container}>
-
       <AdminHeader page={'expenses'} />
       <AdminTable page={'expenses'} />
     </div>
