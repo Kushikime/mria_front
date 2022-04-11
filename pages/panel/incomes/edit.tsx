@@ -8,7 +8,7 @@ const Add: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <AdminAddHeader page={'incomes'} type={'add'} />
+      <AdminAddHeader page={'incomes'} type={'edit'} />
       <div className={styles.createForm}>
         <p>ФІО</p>
         <input type='text' placeholder='Іванов Іван Іванович' />
@@ -36,7 +36,7 @@ const Add: NextPage = () => {
           </div>
         </div>
         <div className={styles.createContainer}>
-          <p className={styles.create}>Створити</p>
+          <p className={styles.create}>Редагувати</p>
         </div>
       </div>
     </div>
