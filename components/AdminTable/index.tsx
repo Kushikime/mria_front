@@ -8,6 +8,8 @@ interface Props {
 
 export const AdminTable = ({ page }: Props) => {
   const [maxRows, setMaxRows] = useState(7);
+  
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -52,7 +54,7 @@ export const AdminTable = ({ page }: Props) => {
                 </td>
                 <td>
                   <div className={styles.actions}>
-                    <img src={'../assets/images/edit.svg'} />
+                    <img src={'../assets/images/edit.svg'} onClick={() => router.push(`/panel/${page}/edit`)} />
                     <div className={styles.divider}></div>
                     <img src={'../assets/images/delete.svg'} />
                   </div>
