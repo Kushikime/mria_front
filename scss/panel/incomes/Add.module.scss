@@ -1,0 +1,104 @@
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 60px 0px 60px;
+  .createForm {
+    margin-top: 65px;
+    padding: 36px 36px 0 36px;
+    p {
+      margin: 0;
+      font-size: 24px;
+      line-height: 28.8px;
+      font-family: 'Gilroy-Light';
+    }
+    input {
+      width: 97%;
+      font-size: 20px;
+      font-family: 'Gilroy-Light';
+      padding: 12px;
+      margin-top: 12px;
+      margin-bottom: 24px;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+    }
+    .currencies {
+      display: flex;
+      align-items: center;
+      margin-top: 12px;
+      .hryvnia {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+        height: 75px;
+        border: 2px solid #F3F4F6;
+        border-radius: 16px;
+        &:active {
+          transform: scale(0.98);
+          box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.24);
+        }
+        img {
+          width: 24px;
+          height: 39px;
+        }
+      }
+      .dollar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+        height: 75px;
+        margin: 0 28px;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        &:active {
+          transform: scale(0.98);
+          box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.24);
+        }
+        img {
+          width: 24px;
+          height: 42px;
+        }
+      }
+      .euro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+        height: 75px;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        &:active {
+          transform: scale(0.98);
+          box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.24);
+        }
+        img {
+          width: 24px;
+          height: 36px;
+        }
+      }
+      .currencyPicked {
+        border: 4px solid rgba(0, 0, 0, 0.2);
+        background: #59AA76;
+      }
+    }
+    .createContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 70px;
+      .create {
+        font-size: 36px;
+        line-height: 44.1px;
+        font-family: 'Gilroy-ExtraBold' sans-serif;
+        padding: 12px 24px;
+        border-radius: 8px;
+        &:active {
+          transform: scale(0.98);
+          box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.24);
+        }
+    }
+    }
+  }
+}
