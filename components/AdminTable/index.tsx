@@ -8,6 +8,8 @@ interface Props {
 
 export const AdminTable = ({ page }: Props) => {
   const [maxRows, setMaxRows] = useState(7);
+  
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -33,8 +35,8 @@ export const AdminTable = ({ page }: Props) => {
         <thead>
           <tr className={styles.tableHeaderRow}>
             <th className={styles.headerDate}>Дата</th>
-            <th>Ім&apos;я</th>
-            {page === 'expenses' && <th className={styles.headerCurrency}>Валюта</th>}
+            <th>{page === 'incomes' ? 'Ім`я' : 'Категорія'}</th>
+            {page === 'incomes' && <th className={styles.headerCurrency}>Валюта</th>}
             <th className={styles.headerSum}>Сума</th>
             <th className={styles.headerActions}></th>
           </tr>
@@ -46,13 +48,13 @@ export const AdminTable = ({ page }: Props) => {
               <tr key={Math.random()} className={styles.tableDataRow}>
                 <td className={styles.date}>22.02.2022</td>
                 <td className={styles.name}>Мединський Святослав Ігорович</td>
-                {page === 'expenses' && <td className={styles.currency}>100$</td>}
+                {page === 'incomes' && <td className={styles.currency}>100$</td>}
                 <td>
                   <p className={styles.sum + ' ' + `${page !== 'incomes' && styles.sumRed}`}>2,941.23 ₴</p>
                 </td>
                 <td>
                   <div className={styles.actions}>
-                    <img src={'../assets/images/edit.svg'} />
+                    <img src={'../assets/images/edit.svg'} onClick={() => router.push(`/panel/${page}/edit`)} />
                     <div className={styles.divider}></div>
                     <img src={'../assets/images/delete.svg'} />
                   </div>

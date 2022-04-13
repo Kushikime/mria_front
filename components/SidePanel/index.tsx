@@ -9,7 +9,7 @@ export const SidePanel = () => {
       <div style={{ flex: 1 }}>
         <div className={styles.buttonContainer}>
           <div
-            className={`${styles.active}` + ' ' + `${router.pathname.endsWith('expenses') && styles.activeVisible}`}
+            className={styles.active + ' ' + `${router.pathname.includes('expenses') && styles.activeVisible}`}
           ></div>
           <button onClick={() => router.push('/panel/expenses')}>
             <img src={'../assets/images/file-minus.svg'} />
@@ -18,7 +18,7 @@ export const SidePanel = () => {
         </div>
         <div className={styles.buttonContainer}>
           <div
-            className={`${styles.active}` + ' ' + `${router.pathname.endsWith('incomes') && styles.activeVisible}`}
+            className={styles.active + ' ' + `${router.pathname.includes('incomes') && styles.activeVisible}`}
           ></div>
           <button onClick={() => router.push('/panel/incomes')}>
             <img src={'../assets/images/file-plus.svg'} />
@@ -27,7 +27,7 @@ export const SidePanel = () => {
         </div>
         <div className={styles.buttonContainer}>
           <div
-            className={`${styles.active}` + ' ' + `${router.pathname.endsWith('accounts') && styles.activeVisible}`}
+            className={styles.active + ' ' + `${router.pathname.includes('accounts') && styles.activeVisible}`}
           ></div>
           <button onClick={() => router.push('/panel/accounts')}>
             <img src={'../assets/images/credit-card.svg'} />
