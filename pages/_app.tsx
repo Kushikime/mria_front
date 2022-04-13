@@ -19,19 +19,11 @@ const store = setupStore();
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-
-
-
-
-  //IF AUTHED REDIRECT TO THE ADMIN PANEL?
-
+  
   const router = useRouter();
 
   if (router.pathname.includes('panel')) {
     if (true) { // TODO: Add validation for authentication
-      // if (router.pathname.endsWith('panel')) {
-      //   router.
-      // }
       return (
         <>
           <SidePanel />

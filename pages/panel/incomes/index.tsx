@@ -1,18 +1,15 @@
-import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import type { NextPage } from 'next';
+import { AdminHeader } from '../../../components/AdminHeader';
+import { AdminTable } from '../../../components/AdminTable';
+import styles from '../../../scss/panel/incomes/Incomes.module.scss';
 
-
-
-const Test: NextPage = () => {
-
-  const router = useRouter();
-  const path = router?.asPath;
-
+const Incomes: NextPage = () => {
   return (
-    <div>
-      <h1>Incomes</h1>
+    <div className={styles.container}>
+      <AdminHeader page={'incomes'} />
+      <AdminTable page={'incomes'} />
     </div>
-  )
-}
+  );
+};
 
-export default Test
+export default Incomes;
