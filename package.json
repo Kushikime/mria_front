@@ -8,6 +8,9 @@
     "start": "next start -p $PORT",
     "lint": "next lint"
   },
+  "engines": { 
+    "node": "16.14.2" 
+  },
   "cacheDirectories": [".next/cache"],
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",

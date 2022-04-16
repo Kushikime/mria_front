@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { NextPage } from 'next';
 
-const page404 = () => {
+const Page404: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -11,4 +12,4 @@ const page404 = () => {
   return null;
 };
 
-export default page404;
+export default Page404;

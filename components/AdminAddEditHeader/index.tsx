@@ -9,7 +9,7 @@ interface Props {
 export const AdminAddHeader = ({ page, type }: Props) => {
   const router = useRouter();
 
-  const pageType = {
+  const pageType: any = {
     add: {
       expenses: ['Створення', 'витрати', 'створення нової витрати'],
       incomes: ['Створення', 'внеску', 'створення нового внеску'],
