@@ -34,12 +34,22 @@
     }
 }
 
+@keyframes moveGradient {
+    50% {
+      background-position: 100% 0%;
+    }
+  }
+
+
+  
+
+
 
 .header {
     width: 100%;
     min-height: 100px;
     height: 100px;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0,0,0, 0.8);
     padding: 0 120px;
     box-sizing: border-box;
     display: flex;
@@ -128,24 +138,73 @@
                 }
             }
             .btn {
-                button {
-                    background-color: transparent;
+                border: none;
+                background-color: transparent;
+    
+                .gradientBorder {
+                    --border-width: 4px;
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-family: Lato, sans-serif;
+                    font-size: 2.5rem;
                     text-transform: uppercase;
-                    border: 6px solid;
-                    border-image-slice: 1;
-                    border-width: 4px;
-                    // border-image-source: linear-gradient(to left, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+                    color: white;
+                    background: rgba(31, 31, 31, 1);
+                    transition: 0.2s linear;
+                    border-radius: 0;
                     padding: 10px 40px;
                     font-size: 18px;                  
                     color: #fff;  
-                    // animation: borderColor infinite;
-                    animation: borderColor 3s infinite;
-                    &:hover {
-                        cursor: pointer;
-                        // border-image-source: linear-gradient(to left, rgba(255, 211, 13, 1), rgba(13, 101, 188, 1));
+                    &::after {
+                      position: absolute;
+                      content: "";
+                      top: calc(-1 * var(--border-width));
+                      left: calc(-1 * var(--border-width));
+                      z-index: -1;
+                      width: calc(100% + var(--border-width) * 2);
+                      height: calc(100% + var(--border-width) * 2);
+                      background: linear-gradient(
+                        90deg,
+                        rgba(13, 101, 188, 1),
+                        rgba(255, 211, 13, 1),
+                        rgba(13, 101, 188, 1),
+                        rgba(255, 211, 13, 1)
+                      );
+                      background-size: 400% 400%;
+                      background-position: 0% 0%;
+                      border-radius: 0;
+                      animation: moveGradient 8s alternate infinite;
+                    }
+                    img {
+                        width: 28px;
+                        margin-left: 20px;
+                        margin-right: -10px;
+                    }
+                    button {
+                        background-color: transparent;
+                        text-transform: uppercase;
+                        // border: 6px solid;
+                        // border-image-slice: 1;
+                        // border-width: 4px;
+                        // border-image-source: linear-gradient(to left, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+                        padding: 10px 40px;
+                        font-size: 18px;                  
+                        color: #fff;  
+                        border:none;
+                        // animation: borderColor infinite;
+                        // animation: borderColor 3s infinite;
+                    }
+                }
+                &:hover {
+                    cursor: pointer;
+                    .gradientBorder {
+                        background: rgba(0, 0, 0, 0);
                     }
                 }
             }
+
         }
     }
 }
