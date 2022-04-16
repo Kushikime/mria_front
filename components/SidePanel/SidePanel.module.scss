@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   .buttonContainer {
-    // width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -17,6 +16,10 @@
       margin-right: 12px;
       background-color: #6B7280;
       border-radius: 0 4px 4px 0;
+      visibility: hidden;
+    }
+    .activeVisible {
+      visibility: visible;
     }
     button {
       width: 174px;
@@ -26,6 +29,10 @@
       line-height: 24px;
       background-color: #fff;
       display: flex;
+      &:active {
+        transform: scale(0.98);
+        box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.24);
+      }
       img {
         width: 24px;
         height: 24px;
@@ -36,5 +43,8 @@
         font-family: 'Gilroy-Light';
       }
     }
+  }
+  .buttonBottom {
+    margin-bottom: 24px;
   }
 }

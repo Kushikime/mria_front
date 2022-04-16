@@ -1,0 +1,112 @@
+.container {
+  table {
+    width: 100%;
+    border-spacing: 0 12px;
+    margin: 24px 0 0 0;
+    .tableHeaderRow {
+      th {
+        font-size: 20px;
+        line-height: 24px;
+        font-family: 'Gilroy-Light';
+        color: #87838e;
+        text-align: left;
+        padding: 12px 0;
+        background-color: #f0f0f0;
+      }
+      .headerDate {
+        padding-left: 12px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+      .headerCurrency {
+        text-align: center;
+      }
+      .headerSum {
+        padding-left: 6px;
+      }
+      .headerActions {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+    .tableDataRow {
+      margin-top: 24px;
+      .date {
+        font-size: 20px;
+        line-height: 24px;
+        font-family: 'Gilroy-Light';
+        color: #87838e;
+        padding-left: 12px;
+      }
+      .name {
+        font-size: 20px;
+        line-height: 24px;
+        font-family: 'Gilroy-ExtraBold';
+      }
+      .currency {
+        font-size: 20px;
+        line-height: 24px;
+        font-family: 'Gilroy-ExtraBold';
+        text-align: center;
+      }
+      .sum {
+        display: inline;
+        margin: 0;
+        padding: 7px;
+        font-size: 20px;
+        line-height: 24px;
+        font-family: 'Gilroy-ExtraBold';
+        color: #fff;
+        background-color: #59aa76;
+        border-radius: 8px;
+      }
+      .sumRed {
+        background-color: #EF4444;
+      }
+      td {
+        // background-color: wheat;
+        align-self: center;
+        .actions {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          margin-right: 12px;
+          .divider {
+            height: 40px;
+            width: 2px;
+            background-color: #000;
+            margin: 6px 12px;
+          }
+          img {
+            width: 24px;
+            height: 24px;
+            &:hover {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+  }
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    p {
+      margin: 0;
+      margin-right: 12px;
+      font-size: 20px;
+      line-height: 24px;
+      font-family: 'Gilroy-Light';
+    }
+    .chevronLeft {
+      width: 24px;
+      height: 24px;
+      transform: rotate(180deg);
+    }
+    .chevronRight {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
