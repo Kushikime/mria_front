@@ -8,6 +8,7 @@
     "start": "next start -p $PORT",
     "lint": "next lint"
   },
+  "cacheDirectories": [".next/cache"],
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@types/react-redux": "^7.1.23",
