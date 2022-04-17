@@ -18,8 +18,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 import { Pie } from 'react-chartjs-2'
 import { current } from '@reduxjs/toolkit'
-import clientAPI from '../api'
 import axios from 'axios'
+import clientAPI from '../api'
 
 interface IncomeToast {
   id: string
@@ -297,6 +297,7 @@ const Landing: NextPage = () => {
   const graphClickEvent = () => {
     console.log("HUJ")
   }
+  
   useEffect(() => {
     const response = clientAPI.get('/incomes');
     console.log("response: ", response)
