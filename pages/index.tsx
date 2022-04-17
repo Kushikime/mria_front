@@ -18,7 +18,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 import { Pie } from 'react-chartjs-2'
 import { current } from '@reduxjs/toolkit'
-
 interface IncomeToast {
   id: string
   amount: number
