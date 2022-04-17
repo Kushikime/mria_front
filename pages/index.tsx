@@ -18,6 +18,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 import { Pie } from 'react-chartjs-2'
 import { current } from '@reduxjs/toolkit'
+
 interface IncomeToast {
   id: string
   amount: number
@@ -394,6 +395,7 @@ const Landing: NextPage = () => {
   };
 
 
+
   return (
     <div className={styles.landing}>
       <Head>
@@ -637,7 +639,7 @@ const Landing: NextPage = () => {
                         <img src={card.img} alt="" />
                       </div>
                       <p>{card.name}</p>
-                      <Link href={card.href} prefetch>
+                      <Link href={card.href}>
                         <a>
                           <img src="/assets/images/face.png" alt="" />
                         </a>
@@ -720,7 +722,7 @@ const Landing: NextPage = () => {
             </div>
 
             <div className={styles.socialFooter}>
-              <Link prefetch={true} href={'https://www.instagram.com/domrii.ua/'}>
+              <Link href={'https://www.instagram.com/domrii.ua/'}>
                 <div className={styles.instagram}>
                   <img src="/assets/images/footerInsta.svg" alt="" />
                   <span className={styles.before}></span>
@@ -728,7 +730,7 @@ const Landing: NextPage = () => {
                 </div>
               </Link>
 
-              <Link prefetch={true} href={'https://www.facebook.com/vg.do.mrii.ua/'}>
+              <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
                 <div className={styles.facebook}>
                   <img src="/assets/images/footerFace.svg" alt="" />
                   <span className={styles.before}></span>
@@ -736,7 +738,7 @@ const Landing: NextPage = () => {
                 </div>
               </Link>
 
-              <Link prefetch={true} href={'https://t.me/do_mrii'}>
+              <Link href={'https://t.me/do_mrii'}>
                 <div className={styles.telegram}>
                   <img src="/assets/images/footerTelegram.svg" alt="" />
                   <span className={styles.before}></span>
@@ -747,7 +749,7 @@ const Landing: NextPage = () => {
 
             <div className={styles.copyrights}>
               <div className={styles.left}>
-                <Link prefetch={true} href={'https://www.instagram.com/naruto/'}>
+                <Link href={'https://www.instagram.com/naruto/'}>
                   <p>Privacy Notice</p>
                 </Link>
               </div>
@@ -770,7 +772,7 @@ const Landing: NextPage = () => {
       <Toast onDelete={deleteToast} toastList={toasts} />
 
       <div className={styles.social}>
-        <Link prefetch={true} href={'https://t.me/do_mrii'}>
+        <Link href={'https://t.me/do_mrii'}>
           <div className={styles.telegram}>
             <img src="/assets/images/telegram.png" alt="" />
             <span className={styles.before}></span>
@@ -778,7 +780,7 @@ const Landing: NextPage = () => {
           </div>
         </Link>
         
-        <Link prefetch={true} href={'https://www.instagram.com/domrii.ua/'}>
+        <Link href={'https://www.instagram.com/domrii.ua/'}>
           <div className={styles.instagram}>
             <img src="/assets/images/instagram.png" alt="" />
             <span className={styles.before}></span>
@@ -786,7 +788,7 @@ const Landing: NextPage = () => {
           </div>
         </Link>
 
-        <Link prefetch={true} href={'https://www.facebook.com/vg.do.mrii.ua/'}>
+        <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
           <div className={styles.facebook}>
             <img src="/assets/images/facebook.png" alt="" />
             <span className={styles.before}></span>

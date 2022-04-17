@@ -6,7 +6,7 @@ module.exports = {
     includePaths: [path.join(__dirname, 'scss')],
   },
   i18n: {
-    locales: ['en', 'uk'],
+    locales: ['uk', 'en'],
     defaultLocale: 'uk'
   }
 }

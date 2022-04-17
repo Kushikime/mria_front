@@ -5,9 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "lint": "next lint"
   },
+  "engines": { 
+    "node": "14.19.1" 
+  },
+  "cacheDirectories": [".next/cache"],
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@types/react-redux": "^7.1.23",
