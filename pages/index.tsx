@@ -17,18 +17,28 @@ import Toast from '../components/Toast'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 import { Pie } from 'react-chartjs-2'
-import { current } from '@reduxjs/toolkit'
 import axios from 'axios'
 import clientAPI from '../api'
+import _ from 'underscore'
+
+
 
 interface IncomeToast {
   id: string
   amount: number
   amountUah: number
   currency: string
-  date: string
+  createdAt: string
   owner: string
   closed: boolean
+}
+
+interface IStatisticsIncome {
+  record: {
+    EUR: number
+    UAH: number
+    USD: number
+  }
 }
 
 const content = {
@@ -290,18 +300,19 @@ const Landing: NextPage = () => {
 
   const [teamList, setTeamList] = useState<typeof team.cards>([]);
 
-  const [usd, setUsd] = useState(15);
-  const [eur, setEur] = useState(15);
-  const [uah, setUah] = useState(60);
+  const [usd, setUsd] = useState(0);
+  const [eur, setEur] = useState(0);
+  const [uah, setUah] = useState(0);
+
+
+  // const [incomesPage, setIncomesPage] = useState(0);
   
   const graphClickEvent = () => {
     console.log("HUJ")
   }
-  
-  useEffect(() => {
-    const response = clientAPI.get('/incomes');
-    console.log("response: ", response)
-  }, [])
+
+
+
 
 
   const pieData = {
@@ -326,6 +337,11 @@ const Landing: NextPage = () => {
     ],
     onClick: graphClickEvent
   };
+
+  const [incomesPages, setIncomesPages] = useState(0);
+  const [incomePageIndex, setIncomePageIndex] = useState(1);
+  const [incomeFetchThrottle, setIncomeFetchThrottle] = useState<any>();
+  const incomesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if(team) {
@@ -359,14 +375,23 @@ const Landing: NextPage = () => {
       console.log("CONNECT")
     });
 
+    const handleCurrencyIncome = (income: IncomeToast) => {
+      const actions = {
+        USD: setUsd,
+        EUR: setEur,
+        UAH: setUah
+      }
+      actions[income.currency](prev => prev + income.amountUah)
+    }
+
     newSocket.on("INCOME", (res: IncomeToast) => setToasts((prev) => {
       let items = prev;
-
-      console.log("INCOME RES: ", res)
 
       if(prev.length > 3) {
         return [...items.slice(1), {...res, id: Date.now().toString()}]
       }
+      setIncomes(prev => [res, ...prev])
+      handleCurrencyIncome(res)
 
       return [...items, {...res, id: Date.now().toString()}]
     }));
@@ -382,6 +407,70 @@ const Landing: NextPage = () => {
       newSocket.close()
     }
   }, []);
+
+  const [statisticIncome, setStatisticIncome] = useState<IStatisticsIncome>()
+  const [incomes, setIncomes] = useState<Array<IncomeToast>>([])
+
+  const getStatisticIncomes = async () => {
+    const data = await clientAPI.get('/statistics/incomes');
+    setStatisticIncome(data.data)
+  }
+
+  const getIncomes = async (page?: number) => {
+    const data = await clientAPI.get(`incomes?perPage=6${page ? '&page='+page : ''}`);
+    setIncomesPages(data.data.pagination.pages)
+    setIncomes(prev => [...prev, ...data.data.records])
+  }
+  
+  useEffect(()=>{
+    /*
+    Query logic
+    */
+    console.log('i fire once');
+},[]);
+  useEffect(() => {
+    // let response;
+    // clientAPI.get('/incomes').then(res => {
+    //   response = res
+      
+    // console.log("response: ", res.data)
+    // });
+    
+    if(!incomes.length) {
+      
+      getIncomes()
+    }
+    
+    getStatisticIncomes()
+  }, [])
+
+  useEffect(() => {
+    if(statisticIncome) {
+      setUsd(statisticIncome.record.USD)
+      setUah(statisticIncome.record.UAH)
+      setEur(statisticIncome.record.EUR)
+    }
+  }, [statisticIncome])
+
+  useEffect(() => {
+    if(incomePageIndex > 1) {
+      getIncomes(incomePageIndex)
+    }
+  }, [incomePageIndex])
+
+
+  const onIncomesScroll = async () => {
+    //fetch to know pages count, then set pages
+    if(incomesRef && incomesRef.current) {
+      if (incomesRef.current.scrollHeight - incomesRef.current.scrollTop === incomesRef.current.clientHeight) {
+        setIncomePageIndex((prev) => prev+=1)
+      }
+    }
+    // setIncomeFetchThrottle(_.throttle(() => {
+    //   console.log("HHUJ")
+    // }, 1000))
+
+  }
 
   const chartRef = useRef<ChartJS>(null);
 
@@ -487,33 +576,28 @@ const Landing: NextPage = () => {
               
               <p className={styles.some}>{zvit.switcher.last} <span className={styles.selector}>{chartState === 'incomes' ? zvit.switcher.incomes : zvit.switcher.outcomes} <span className={styles.arrow}></span></span></p>
             
-              <div className={styles.cards}>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
+              <div className={styles.cards} onScroll={(e) => {onIncomesScroll()}} ref={incomesRef}>
+                {
+                  incomes.length ? incomes.map((income, index) => {
+                    return (
+                      <div className={styles.card} key={`income_${index}`}>
+                        <div className={styles.left}>
+                            <div className={styles.top}>
+                                <p>{income.owner ? income.owner : 'Anonymous'}</p>
+                            </div>
+      
+                            <div className={styles.bottom}>
+                                <p className={styles.date}>{income.createdAt ? new Date(income.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}</p>
+      
+                                <p className={styles.amount}>+222.67$</p>
+                            </div>
+                        </div>
                       </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
+                    )
+                  })
+                  :
+                  null
+                }
               </div>
             </div>
 

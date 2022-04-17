@@ -8,13 +8,16 @@
     "start": "next start -p $PORT",
     "lint": "next lint"
   },
-  "engines": { 
-    "node": "14.19.1" 
+  "engines": {
+    "node": "14.19.1"
   },
-  "cacheDirectories": [".next/cache"],
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@types/react-redux": "^7.1.23",
+    "@types/underscore": "^1.11.4",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.26.1",
     "chart.js": "^3.7.1",
@@ -26,7 +29,8 @@
     "react-redux": "^7.2.8",
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
-    "swiper": "^8.1.0"
+    "swiper": "^8.1.0",
+    "underscore": "^1.13.2"
   },
   "devDependencies": {
     "@types/node": "17.0.23",

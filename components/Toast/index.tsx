@@ -6,7 +6,7 @@ interface IncomeToast {
     amount: number
     amountUah: number
     currency: string
-    date: string
+    createdAt: string
     owner: string
     id: string
     closed: boolean
@@ -46,7 +46,7 @@ export default function Toast(props: IToastProps) {
                         </div>
 
                         <div className={styles.bottom}>
-                            <p className={styles.date}>{item.date ? item.date : new Date().toLocaleDateString()}</p>
+                            <p className={styles.date}>{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}</p>
 
                             <p className={styles.amount}>+{item.amount}{currencies[item.currency]}</p>
                         </div>
