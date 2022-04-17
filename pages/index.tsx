@@ -297,6 +297,10 @@ const Landing: NextPage = () => {
   const graphClickEvent = () => {
     console.log("HUJ")
   }
+  useEffect(() => {
+    const response = clientAPI.get('/incomes');
+    console.log("response: ", response)
+  }, [])
 
 
   const pieData = {
@@ -344,7 +348,7 @@ const Landing: NextPage = () => {
   useEffect(() => {
     setSocketActive(true);
     
-    const newSocket = io('https://c8e5-2a00-1028-8380-96ba-8fa2-907f-27e-b33e.ngrok.io', {
+    const newSocket = io('http://54.93.88.36:17180', {
       transports: [
         'websocket'
       ]
@@ -357,7 +361,7 @@ const Landing: NextPage = () => {
     newSocket.on("INCOME", (res: IncomeToast) => setToasts((prev) => {
       let items = prev;
 
-
+      console.log("INCOME RES: ", res)
 
       if(prev.length > 3) {
         return [...items.slice(1), {...res, id: Date.now().toString()}]
@@ -483,110 +487,6 @@ const Landing: NextPage = () => {
               <p className={styles.some}>{zvit.switcher.last} <span className={styles.selector}>{chartState === 'incomes' ? zvit.switcher.incomes : zvit.switcher.outcomes} <span className={styles.arrow}></span></span></p>
             
               <div className={styles.cards}>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
-                <div className={styles.card}>
-                  <div className={styles.left}>
-                      <div className={styles.top}>
-                          <p>Erik Demchak</p>
-                      </div>
-
-                      <div className={styles.bottom}>
-                          <p className={styles.date}>13.07.2000</p>
-
-                          <p className={styles.amount}>+222.67$</p>
-                      </div>
-                  </div>
-                </div>
                 <div className={styles.card}>
                   <div className={styles.left}>
                       <div className={styles.top}>

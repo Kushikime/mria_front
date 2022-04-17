@@ -42,11 +42,11 @@ export default function Toast(props: IToastProps) {
                 }}>
                     <div className={styles.left}>
                         <div className={styles.top}>
-                            <p>{item.owner}</p>
+                            <p>{item.owner ? item.owner : "Anonymous"}</p>
                         </div>
 
                         <div className={styles.bottom}>
-                            <p className={styles.date}>{item.date}</p>
+                            <p className={styles.date}>{item.date ? item.date : new Date().toLocaleDateString()}</p>
 
                             <p className={styles.amount}>+{item.amount}{currencies[item.currency]}</p>
                         </div>
