@@ -33,14 +33,90 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             p {
                 color: #fff;
                 text-align: center;
                 font-family: 'jetBrains', sans-serif;
                 font-size: 64px;
-                margin-top: -140px;
+                margin: 0;
+            }
+            img {
+                margin-bottom: -10px;
+                max-width: 100px;
+            }
+            .play {
+                &:hover {
+                    cursor: pointer;
+                }
+                margin-top: 40px;
+                img {
+
+                }
             }
         }
+    }
+
+    .videoModal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        box-sizing: border-box;
+        z-index: 100;
+        &:hover {
+            cursor: pointer;
+        }
+        .closeBtn {
+            display: flex;
+            width: 50px;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 60px;
+            top: 50px;
+            z-index: 100;
+            &:hover {
+                cursor: pointer;
+            }
+            span {
+                background-color: #fff;
+                width: 40px;
+                height: 3px;
+                transform: rotate(45deg);
+                &::after {
+                    content: '';
+                    position: absolute;
+                    background-color: #fff;
+                    width: 40px;
+                    height: 3px;
+                    transform: rotate(90deg);
+                }
+            }
+        }
+        .wrap {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+            video {
+                height: 600px;
+                &:hover {
+                    cursor: default;
+                }
+            }
+        }
+
     }
 
     .who_we_are {
@@ -174,10 +250,10 @@
                     position: relative;
                     background-color: white;
                     &:nth-child(odd) {
-                        box-shadow: 10px 10px #0057B8;
+                        box-shadow: -8px 10px #0057B8;
                     }
                     &:nth-child(even) {
-                        box-shadow: 10px 10px #FFD700;
+                        box-shadow: -8px 10px #FFD700;
                     }
                 }
             }
@@ -373,7 +449,7 @@
                 flex-direction: column;
                 text-align-last: left;
                 width: 100%;
-                h1 {
+                h2 {
                     margin: 0;
                     padding: 0;
                     font-family: 'jetBrains', sans-serif;
@@ -405,7 +481,7 @@
                             img {
                                 border: 2px solid #000;
                                 width: 100%;
-                                box-shadow: 8px 8px #0057B8;
+                                box-shadow: -8px 8px #0057B8;
                             }
                         }
                     }
@@ -415,7 +491,7 @@
                             img {
                                 width: 100%;
                                 border: 2px solid #000;
-                                box-shadow: 8px 8px #FFD700;
+                                box-shadow: -8px 8px #FFD700;
                             }
                         }
                     }
@@ -498,10 +574,10 @@
 
     .footer {
         width: 100%;
-        border-top: 8px solid #000;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: #222222;
         padding-top: 70px;
         .wrap {
             display: flex;
@@ -511,7 +587,7 @@
             max-width: 1220px;
             .logo {
                 img {
-                    
+                    width: 180px;
                 }
             }
             .menu {
@@ -531,7 +607,7 @@
                             width: 0%;
                             transition: 0.6s;
                             position: absolute;
-                            background-color: #000;
+                            background-color: #fff;
                             height: 2px;
                             left: 0;
                             bottom: -6px;
@@ -543,9 +619,9 @@
                         }
                         a {
                             text-decoration: none;
-                            font-family: 'boldBrains', sans-serif;
+                            font-family: 'jetBrains', sans-serif;
                             font-size: 18px;  
-                            color: #000;
+                            color: #fff;
                             text-transform: uppercase;
                         }
                     }
@@ -553,11 +629,10 @@
             }
 
             .btn {
-                border: 4px solid #000;
-                
+                border: 4px solid #fff;
                 padding:10px 15px;
                 span {
-                    color: #000;
+                    color: #fff;
                     font-size: 34px;
                     text-transform: uppercase;
                     font-family: 'jetBrains', sans-serif;
@@ -573,12 +648,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                .facebook, .instagram, .telegram {
+                .facebook, .instagram, .telegram, .twitter {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     width: 35px;
                     height: 35px;
+                    margin-right: 25px;
                     img {
                         width: 35px;
                         height: 35px;
@@ -587,8 +663,8 @@
                         cursor: pointer;
                     }
                 }
-                .facebook {
-                    margin: 0 25px;
+                .twitter {
+                    margin-right: 0;
                 }
             }
             .copyrights {
@@ -596,9 +672,9 @@
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
-                font-family: 'boldBrains', sans-serif;
+                font-family: 'jetBrains', sans-serif;
                 font-size: 18px;  
-                color: #000;
+                color: #fff;
                 .left {
                     p {
                         text-decoration: underline;
@@ -678,3 +754,485 @@
         }
     }
 }
+
+@media (max-width: 1250px) {
+    .landing {
+        .who_we_are {
+            padding: 0 25px;
+            .wrapper {
+                .top {
+                    h1 {
+                        font-size: 50px;
+                    }
+                    p {
+                        font-size: 18px;
+                    }
+                }
+
+
+                .content {
+                    .left {
+                        width: 60%;
+                        margin-top: 50px;
+                        p {
+                            font-size: 20px;
+                        }
+                    }
+                    .right {
+                        width: 40%;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .what_we_do {
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+                .top {
+                    h1 {
+
+                    }
+
+                    p {
+
+                    }
+                }
+
+                .content {
+                    .card {
+                        box-sizing: border-box;
+                        h2 {
+
+                        }
+                        p {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        .inventors {
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+                .top {
+                    h2 {
+
+                    }
+
+                    p {
+
+                    }
+                }
+                .content {
+                    .card {
+                        .image {
+                            img {
+
+                            }
+                        }
+                        p {
+
+                        }
+                        a {
+                            
+                        }
+                    }
+                }
+            }
+        }
+        .partners {
+            z-index: 10 !important;
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+            }
+        }
+
+        .footer {
+            .wrap {
+                box-sizing: border-box;
+                padding: 0 25px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .landing {
+        .who_we_are {
+            padding: 0 25px;
+            .wrapper {
+                .content {
+                    .left {
+                        width: 100%;
+                    }
+                    .right {
+                        display: none;
+                    }
+                }
+            }
+        }
+        
+        .social {
+            display: none;
+        }
+        .what_we_do {
+            .wrapper {
+                .top {
+                    h1 {
+
+                    }
+
+                    p {
+
+                    }
+                }
+
+                .content {
+                    .card {
+                        h2 {
+
+                        }
+                        p {
+                            
+                        }
+                    }
+                }
+            }
+        }
+        .inventors {
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+                .top {
+                    h2 {
+
+                    }
+
+                    p {
+
+                    }
+                }
+                .content {
+                    .card {
+                        width: 30%;
+                        .image {
+                            img {
+
+                            }
+                        }
+                        p {
+
+                        }
+                        a {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .landing {
+        .videoModal {
+            .closeBtn {
+                top: 15px;
+                right: 15px;
+            }
+            .wrap {
+                video {
+                    height: 500px;
+                }
+            }
+        }
+        .videoWrap {
+            video {
+
+            }
+            .videoContent {
+                padding: 0 16px;
+                box-sizing: border-box;
+                p {
+                    font-size: 36px;
+                    line-height: 50px;
+                }
+
+                img {
+                    height: 40px;
+                    display: none;
+                }
+                .play {
+                    img {
+                        height: 100px;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .bgVideo {
+            display: flex;
+            width: 100%;
+            height: 90vh;
+            img {
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .who_we_are {
+            padding: 50px 25px;
+            .wrapper {
+                .top {
+                    margin: 0;
+                    h1 {
+                        font-size: 36px;
+                    }
+                    p {
+                        font-size: 10px;
+                    }
+                }
+                .content {
+                    margin-top: 12px;
+                    .left {
+                        margin-top: 0;
+                        p {
+                            font-size: 14px;
+                            line-height: 17px;
+                            margin-bottom: 16px;
+                        }
+                    }
+                    .right {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .what_we_do {
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+                .top {
+                    margin-top: 0;
+                    h1 {
+                        font-size: 36px;
+                    }
+
+                    p {
+                        font-size: 10px;
+                    }
+                }
+
+                .content {
+                    margin-top: 12px;
+                    .card {
+                        margin-bottom: 24px;
+                        box-sizing: border-box;
+                        h2 {
+                            font-size: 20px;
+                            margin-bottom: 0;
+                        }
+                        p {
+                            font-size: 12px;
+                            line-height: 16px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .inventors {
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+                .top {
+                    h2 {
+                        font-size: 36px;
+                        line-height: 44px;
+                    }
+
+                    p {
+                        font-size: 10px;
+                    }
+                }
+                .content {
+                    margin-top: 24px;
+                    justify-content: space-between;
+                    .card {
+                        width: 46%;
+                        .image {
+                            img {
+                                height: 280px;
+                            }
+                        }
+                        p {
+                            font-size: 16px;
+                        }
+                        a {
+                            
+                        }
+                    }
+                }
+            }
+        }
+
+        .partners {
+            z-index: 10 !important;
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+                .top {
+                    margin-top: 0;
+                    h2 {
+                        font-size: 36px;
+                        line-height: 44px;
+                    }
+
+                    p {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .footer {
+            padding-top: 40px;
+            .wrap {
+                .logo {
+                    img {
+                        width: 100px;
+                    }
+                }
+                .menu {
+                    margin: 40px 0;
+                    ul {
+                        flex-direction: column;
+                        li {
+                            margin-left: 0;
+                            margin-bottom: 8px;
+                            a {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+                .btn {
+                    span {
+                        font-size: 20px;
+                    }
+                }
+                .socialFooter {
+                    margin-bottom: 40px;
+                }
+                .copyrights {
+                    .left {
+                        p {
+                            font-size: 12px;
+                        }
+                    }
+
+                    .right {
+                        p {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 560px) {
+    .landing {
+        .footer {
+            padding-top: 24px;
+            .wrap {
+                .logo {
+                    img {
+                        width: 100px;
+                    }
+                }
+                .menu {
+                    ul {
+                        flex-direction: column;
+                        li {
+                            margin-left: 0;
+                            margin-bottom: 8px;
+                            a {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+                .btn {
+                    span {
+                        font-size: 20px;
+                    }
+                }
+                .copyrights {
+                    .left {
+                        p {
+                            font-size: 9px;
+                        }
+                    }
+
+                    .right {
+                        p {
+                            font-size: 9px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .landing {
+        .inventors {
+            .wrapper {
+                box-sizing: border-box;
+                padding: 0 25px;
+                .top {
+                    h2 {
+                        font-size: 36px;
+                    }
+
+                    p {
+                        font-size: 10px;
+                    }
+                }
+                .content {
+                    justify-content: space-between;
+                    .card {
+                        width: 46%;
+                        .image {
+                            img {
+                                height: 216px;
+                            }
+                        }
+                        p {
+
+                        }
+                        a {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
