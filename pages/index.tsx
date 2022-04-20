@@ -18,6 +18,7 @@ import Toast from '../components/Toast'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2'
 import _ from 'underscore'
+import useWindowDimensions from '../hooks/userWindowDimensionsHook'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -48,7 +49,12 @@ const content = {
           partners: 'Partners',
           contacts: 'Contact'
       },
-      h1: 'Welcome!   We are from Ukraine!',
+      videoWrap: {
+        title: {
+          top: 'Welcome!',
+          bottom: 'We are from Ukraine '
+        }
+      },
       whoWeAre: {
         title: 'About us',
         subTitle: 'What our volunteer network does and how we help Ukraine',
@@ -163,7 +169,12 @@ const content = {
         partners: 'пАРТНЕРИ',
         contacts: 'Контакти'
     },
-    h1: 'Доброго дня!   Ми з України',
+    videoWrap: {
+      title: {
+        top: 'Доброго дня!',
+        bottom: 'Ми з України '
+      }
+    },
     whoWeAre: {
       title: 'ХТО МИ',
       subTitle: 'Чим займається наша волонтерська організація і як ми допомагаємо Україні ',
@@ -282,7 +293,7 @@ const Landing: NextPage = () => {
   const { locale, locales, defaultLocale, } = useRouter();
 
   //@ts-ignore
-  const { menu, h1, helpBtn, partners, whoWeAre, zvit, whatWeDo, team }: typeof content.en = content[locale];
+  const { menu, h1, helpBtn, partners, videoWrap, whoWeAre, zvit, whatWeDo, team }: typeof content.en = content[locale];
   
 
   const router = useRouter();
@@ -336,10 +347,12 @@ const Landing: NextPage = () => {
     onClick: graphClickEvent
   };
 
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const [incomesPages, setIncomesPages] = useState(0);
   const [incomePageIndex, setIncomePageIndex] = useState(1);
   const [incomeFetchThrottle, setIncomeFetchThrottle] = useState<any>();
   const incomesRef = useRef<HTMLDivElement>(null);
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     if(team) {
@@ -488,6 +501,10 @@ const Landing: NextPage = () => {
     // printElementsAtEvent(getElementsAtEvent(chart, event));
   };
 
+  const videoModalToggle = () => {
+    setShowVideoModal(prev => !prev)
+  }
+
 
 
   return (
@@ -499,14 +516,42 @@ const Landing: NextPage = () => {
       </Head>
       <Header />
 
-
+        {
+          showVideoModal ?
+          <div className={styles.videoModal} onClick={videoModalToggle}>
+            <div className={styles.closeBtn}>
+              <span></span>
+            </div>
+            <div className={styles.wrap}>
+              <video autoPlay controls>
+                <source src="/assets/mriaFront.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          :
+          <></>
+        }
         <div className={styles.videoWrap} >
-          <video muted autoPlay loop>
-            <source src="/assets/test.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        
+          {
+            width >= 768 ?
+              <video muted autoPlay loop>
+                <source src="/assets/mriaFront.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            :
+            <div className={styles.bgVideo}>
+              <img src="/assets/images/bgVideo.jpg" alt="" />
+            </div>
+          }
           <div className={styles.videoContent}>
-            <p>{h1} 🇺🇦</p>
+            <p>{videoWrap.title.top}</p>
+            <br />
+            <p>{videoWrap.title.bottom} <img src="/assets/images/ua_flag.png" alt="" /> </p>
+            <div className={styles.play} onClick={videoModalToggle}>
+              <img src="/assets/images/playVideo.svg" alt="" />
+            </div>
           </div>
         </div>
 
@@ -612,7 +657,7 @@ const Landing: NextPage = () => {
         <div className={styles.inventors} id="inventors">
           <div className={styles.wrapper}>
             <div className={styles.top}>
-              <h1>{team.title}</h1>
+              <h2>{team.title}</h2>
               <p>{team.subTitle}</p>
             </div>
             <div className={styles.content}>
@@ -648,9 +693,9 @@ const Landing: NextPage = () => {
 
           <div className={styles.content}>
             <Swiper
-              spaceBetween={50}
+              spaceBetween={200}
               className={styles.customSlider}
-              slidesPerView={3}
+              slidesPerView={width <= 1100 ? 2 : 3}
               autoplay={true}
             >
               <SwiperSlide>
@@ -688,7 +733,7 @@ const Landing: NextPage = () => {
       <footer className={styles.footer} id="partners">
           <div className={styles.wrap}>
               <div className={styles.logo}>
-              <img src="/assets/images/footerLogo.png" alt="До мрії лого" className="logo" />
+              <img src="/assets/images/logo1.svg" alt="До мрії лого" className="logo" />
             </div>
             <div className={styles.menu}>
               <ul>
@@ -726,6 +771,14 @@ const Landing: NextPage = () => {
               <Link href={'https://t.me/do_mrii'}>
                 <div className={styles.telegram}>
                   <img src="/assets/images/footerTelegram.svg" alt="" />
+                  <span className={styles.before}></span>
+                  <span className={styles.after}></span>
+                </div>
+              </Link>
+
+              <Link href={'#'}>
+                <div className={styles.twitter}>
+                  <img src="/assets/images/footerTwitter.svg" alt="" />
                   <span className={styles.before}></span>
                   <span className={styles.after}></span>
                 </div>
@@ -776,6 +829,14 @@ const Landing: NextPage = () => {
         <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
           <div className={styles.facebook}>
             <img src="/assets/images/facebook.png" alt="" />
+            <span className={styles.before}></span>
+            <span className={styles.after}></span>
+          </div>
+        </Link>
+
+        <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
+          <div className={styles.facebook}>
+            <img src="/assets/images/twitter.png" alt="" />
             <span className={styles.before}></span>
             <span className={styles.after}></span>
           </div>

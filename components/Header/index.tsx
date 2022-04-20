@@ -38,6 +38,9 @@ const Header = (props: IHeaderProps) => {
     //@ts-ignore
     const { menu, helpBtn } = content[locale];
 
+
+    const [mobileMenuState, setMobileMenuState] = useState(false);
+
     return (
         <div className={styles.header}>
             <div className={styles.wrapper}>
@@ -71,6 +74,10 @@ const Header = (props: IHeaderProps) => {
                             <span>{helpBtn}</span>
                             <img src="/assets/images/ua_flag.png" alt="" />    
                         </div>
+                    </div>
+                    {/* mobileMenuState */}
+                    <div className={styles.mobileMenuToggler}>
+                        <span></span>
                     </div>
                 </div>
             </div>
