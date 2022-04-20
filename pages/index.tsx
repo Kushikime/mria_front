@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { appSlice } from '../store/reducers/AppSlice'
+import clientAPI from '../api'
 
 import styles from  '../scss/landing/Landing.module.scss';
 import Header from '../components/Header'
@@ -15,13 +16,10 @@ import { io, Socket } from 'socket.io-client'
 import Toast from '../components/Toast'
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-ChartJS.register(ArcElement, Tooltip, Legend);
 import { Pie } from 'react-chartjs-2'
-import axios from 'axios'
-import clientAPI from '../api'
 import _ from 'underscore'
 
-
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface IncomeToast {
   id: string

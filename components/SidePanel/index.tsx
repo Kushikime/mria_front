@@ -1,8 +1,18 @@
 import { useRouter } from 'next/router';
+import { signOut } from '../../api/auth';
 import styles from './SidePanel.module.scss';
 
 export const SidePanel = () => {
   const router = useRouter();
+
+  const onExitClick = () => {
+    signOut().then((resp) => {
+      console.log('signOut', resp);
+    }).finally(() => {
+      localStorage.clear();
+      router.push('/login');
+    });
+  }
 
   return (
     <div className={styles.container}>
@@ -36,7 +46,7 @@ export const SidePanel = () => {
         </div>
       </div>
       <div className={styles.buttonContainer + ' ' + styles.buttonBottom}>
-        <button onClick={() => router.push('/logout')}> {/* TODO: Logout page */}
+        <button onClick={onExitClick}>
           <img src={'../assets/images/exit.svg'} />
           <p>Вихід</p>
         </button>

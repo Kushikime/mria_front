@@ -103,10 +103,21 @@
       width: 24px;
       height: 24px;
       transform: rotate(180deg);
+      &:active {
+        transform: scale(0.98);
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.24);
+        border-radius: 2px;
+        transform: rotate(180deg);
+      }
     }
     .chevronRight {
       width: 24px;
       height: 24px;
+      &:active {
+        transform: scale(0.98);
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.24);
+        border-radius: 2px;
+      }
     }
   }
 }

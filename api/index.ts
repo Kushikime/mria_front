@@ -18,7 +18,7 @@ const clientAPI = axios.create({
  */
 const checkForPath = (response: { data: { path: string | string[] }; config: { method: string } }) => {
   const excludePaths = ['/sign-in', '/refresh'];
-  return excludePaths.find((value) => response?.data?.path.includes(value) && response?.config?.method !== 'get');
+  return excludePaths.find((value) => response?.data?.path?.includes(value) && response?.config?.method !== 'get');
 };
 
 export const handleError = (error: any) => {
@@ -28,12 +28,15 @@ export const handleError = (error: any) => {
 
   if (error?.response?.status === 403) {
     return clientAPI
-      .post('/refresh', { refreshToken: localStorage.getItem('refreshToken') })
+      .post('/refresh', { refreshToken: localStorage.getItem('@refreshToken') })
       .then((response) => {
         console.log(response);
+        // set refresh Token
+        // set access Token
       })
       .catch(() => {
         localStorage.clear();
+        
         // navigate to home
       });
   }
