@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
@@ -41,6 +42,10 @@ const Header = (props: IHeaderProps) => {
 
     const [mobileMenuState, setMobileMenuState] = useState(false);
 
+    const mobileMenuToggler = () => {
+        setMobileMenuState((prev) => !prev)
+    }
+
     return (
         <div className={styles.header}>
             <div className={styles.wrapper}>
@@ -76,9 +81,73 @@ const Header = (props: IHeaderProps) => {
                         </div>
                     </div>
                     {/* mobileMenuState */}
-                    <div className={styles.mobileMenuToggler}>
+                    <div onClick={mobileMenuToggler} className={`${styles.mobileMenuToggler} ${mobileMenuState ? styles.activeMobileMenuToggler : ''}`}>
                         <span></span>
                     </div>
+                </div>
+            </div>
+            <div className={`${styles.mobileMenu}  ${mobileMenuState ? styles.mobileMenuActive : ''}`}>
+                <div className={styles.top}>
+                    <div className={styles.logo}>
+                        <img src="/assets/images/logo2.svg" alt="До мрії лого" className="logo" />
+                    </div>
+                </div>
+
+                <div className={styles.content}>
+                    <ul>
+                        <li>
+                            <a href="#">{menu.whoWeAre}</a>
+                        </li>
+                        <li><a href="#">{menu.whatWeDo}</a></li>
+                        <li><a href="#">{menu.team}</a></li>
+                        {/* <li><a href="#">ЗВІТНІСТЬ</a></li> */}
+                        <li><a href="#">{menu.partners}</a></li>
+                        <li><a href="#">{menu.contacts}</a></li>
+                    </ul>
+
+                    <div className={styles.btn}>
+                        <div className={styles.gradientBorder}>
+                            {/* <button></button> */}
+                            <span>{helpBtn}</span>
+                            <img src="/assets/images/ua_flag.png" alt="" />    
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.bottom}>
+                    <div className={styles.socialFooter}>
+                        <Link href={'https://www.instagram.com/domrii.ua/'}>
+                            <div className={styles.instagram}>
+                            <img src="/assets/images/footerInsta.svg" alt="" />
+                            <span className={styles.before}></span>
+                            <span className={styles.after}></span>
+                            </div>
+                        </Link>
+
+                        <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
+                            <div className={styles.facebook}>
+                            <img src="/assets/images/footerFace.svg" alt="" />
+                            <span className={styles.before}></span>
+                            <span className={styles.after}></span>
+                            </div>
+                        </Link>
+
+                        <Link href={'https://t.me/do_mrii'}>
+                            <div className={styles.telegram}>
+                            <img src="/assets/images/footerTelegram.svg" alt="" />
+                            <span className={styles.before}></span>
+                            <span className={styles.after}></span>
+                            </div>
+                        </Link>
+
+                        <Link href={'#'}>
+                            <div className={styles.twitter}>
+                            <img src="/assets/images/footerTwitter.svg" alt="" />
+                            <span className={styles.before}></span>
+                            <span className={styles.after}></span>
+                            </div>
+                        </Link>
+                    </div>  
                 </div>
             </div>
         </div>

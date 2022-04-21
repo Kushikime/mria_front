@@ -352,7 +352,9 @@ const Landing: NextPage = () => {
   const [incomePageIndex, setIncomePageIndex] = useState(1);
   const [incomeFetchThrottle, setIncomeFetchThrottle] = useState<any>();
   const incomesRef = useRef<HTMLDivElement>(null);
-  const { height, width } = useWindowDimensions();
+  // const { height, width } = useWindowDimensions();
+
+
 
   useEffect(() => {
     if(team) {
@@ -505,6 +507,8 @@ const Landing: NextPage = () => {
     setShowVideoModal(prev => !prev)
   }
 
+  const size = useWindowSize();
+
 
 
   return (
@@ -535,7 +539,7 @@ const Landing: NextPage = () => {
         <div className={styles.videoWrap} >
         
           {
-            width >= 768 ?
+            size.width >= 768 ?
               <video muted autoPlay loop>
                 <source src="/assets/mriaFront.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -695,7 +699,7 @@ const Landing: NextPage = () => {
             <Swiper
               spaceBetween={200}
               className={styles.customSlider}
-              slidesPerView={width <= 1100 ? 2 : 3}
+              slidesPerView={size.width <= 1100 ? 2 : 3}
               autoplay={true}
             >
               <SwiperSlide>
@@ -844,6 +848,41 @@ const Landing: NextPage = () => {
       </div>
     </div>
   )
+}
+
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    // only execute all the code below in client side
+    if (typeof window !== 'undefined') {
+      // Handler to call on window resize
+      //@ts-ignore
+      function handleResize() {
+        // Set window width/height to state
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+    
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+     
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+    
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
 }
 
 export default Landing

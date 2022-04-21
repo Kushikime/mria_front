@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import {BASE_URL} from '@env';
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://0.0.0.0:4444';
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4444';
 
 const clientAPI = axios.create({
   baseURL: baseURL,
