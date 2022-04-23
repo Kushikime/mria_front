@@ -116,6 +116,7 @@
                 align-items: center;
                 margin-right: 70px;
                 span {
+                    margin-left: 4px;
                     border-left: 6px solid transparent;
                     border-right: 6px solid transparent;
                     border-top: 6px solid white;
@@ -131,6 +132,20 @@
                 }
                 &:hover {
                     cursor: pointer;
+                }
+                position: relative;
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    position: absolute;
+                    top: 24px;
+                    li {
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 0.15);
+                        }
+                    }
                 }
             }
             .btn {
@@ -322,7 +337,7 @@
             position: absolute;
             width: 100%;
             background-color: #fff;
-            right: -600px;
+            right: -2000px;
             top: 0;
             opacity: 0;
             transition: 0.4s;

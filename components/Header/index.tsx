@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import _ from 'underscore';
 import styles from './Header.module.scss';
 
 interface IHeaderProps {
@@ -46,6 +47,16 @@ const Header = (props: IHeaderProps) => {
         setMobileMenuState((prev) => !prev)
     }
 
+    const [langDropDownState, setLangDropDownState] = useState(false)
+
+    const toggleLangDropDown = () => {
+        setLangDropDownState(prev => !prev)
+    }
+
+    const onLangSelect = (lang: string) => {
+        console.log("LANG: ", lang)
+    }
+
     return (
         <div className={styles.header}>
             <div className={styles.wrapper}>
@@ -68,10 +79,28 @@ const Header = (props: IHeaderProps) => {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <div className={styles.language_drop}>
-                        
-                        <p>UA</p>
+                    <div className={styles.language_drop} onClick={toggleLangDropDown}>
+                        {/* active element */}
+                        <p>{locale.toLocaleUpperCase()}</p>
                         <span></span>
+
+                        {/* selectOptions */}
+                        {
+                            langDropDownState ?
+                            <ul>
+                                {
+                                    locales.filter(item => item !== locale).map((lang, index) => {
+                                        return <Link href={'/'} locale={lang}>
+                                            <li onClick={(e) => {onLangSelect(lang)}} key={`dropDown_${lang}_${index}`}>
+                                                <p>{lang.toLocaleUpperCase()}</p>
+                                            </li>
+                                        </Link>
+                                    })
+                                }
+                            </ul>
+                            :
+                            <></>
+                        }
                     </div>
                     <div className={styles.btn}>
                         <div className={styles.gradientBorder}>

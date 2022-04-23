@@ -22,16 +22,22 @@ import useWindowDimensions from '../hooks/userWindowDimensionsHook'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const currencies: any = {
+  USD: '$',
+  EUR: '€',
+  UAH: '₴'
+}
+
 interface IncomeToast {
   id: string
   amount: number
   amountUah: number
-  currency: string
+  currencyName: string
   createdAt: string
   owner: string
   closed: boolean
+  hide?: boolean
 }
-
 interface IStatisticsIncome {
   record: {
     EUR: number
@@ -394,11 +400,13 @@ const Landing: NextPage = () => {
         EUR: setEur,
         UAH: setUah
       }
-      actions[income.currency](prev => prev + income.amountUah)
+      actions[income.currencyName](prev => prev + income.amountUah)
     }
 
     newSocket.on("INCOME", (res: IncomeToast) => setToasts((prev) => {
       let items = prev;
+
+      console.log("TOAST: ", res)
 
       if(prev.length > 3) {
         return [...items.slice(1), {...res, id: Date.now().toString()}]
@@ -625,9 +633,17 @@ const Landing: NextPage = () => {
             
               <div className={styles.cards} onScroll={(e) => {onIncomesScroll()}} ref={incomesRef}>
                 {
-                  incomes.length ? incomes.map((income, index) => {
+                  incomes.length ? incomes.filter((item, index) => {
+                    let changed = item
+
+                    if(index > 4) {
+                      changed.hide = true
+                    }
+
+                    return changed
+                  }).map((income, index) => {
                     return (
-                      <div className={styles.card} key={`income_${index}`}>
+                      <div className={`${styles.card} ${income.hide ? styles.hide : ''}`} key={`income_${index}`}>
                         <div className={styles.left}>
                             <div className={styles.top}>
                                 <p>{income.owner ? income.owner : 'Anonymous'}</p>
@@ -635,8 +651,7 @@ const Landing: NextPage = () => {
       
                             <div className={styles.bottom}>
                                 <p className={styles.date}>{income.createdAt ? new Date(income.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}</p>
-      
-                                <p className={styles.amount}>+222.67$</p>
+                                <p className={styles.amount}>+{income.amount}{currencies[income.currencyName]}</p>
                             </div>
                         </div>
                       </div>

@@ -5,7 +5,7 @@ import styles from './Toast.module.scss';
 interface IncomeToast {
     amount: number
     amountUah: number
-    currency: string
+    currencyName: string
     createdAt: string
     owner: string
     id: string
@@ -48,11 +48,11 @@ export default function Toast(props: IToastProps) {
                         <div className={styles.bottom}>
                             <p className={styles.date}>{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}</p>
 
-                            <p className={styles.amount}>+{item.amount}{currencies[item.currency]}</p>
+                            <p className={styles.amount}>+{item.amount}{currencies[item.currencyName]}</p>
                         </div>
                     </div>
                     <div className={styles.right}>
-                        <p>{currencies[item.currency]}</p>
+                        <p>{currencies[item.currencyName]}</p>
                     </div>
                 </div>
             )
