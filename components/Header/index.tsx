@@ -68,13 +68,13 @@ const Header = (props: IHeaderProps) => {
                     <div className={styles.content}>
                         <ul>
                             <li>
-                                <a href="#">{menu.whoWeAre}</a>
+                                <a href="#who_we_are">{menu.whoWeAre}</a>
                             </li>
-                            <li><a href="#">{menu.whatWeDo}</a></li>
-                            <li><a href="#">{menu.team}</a></li>
+                            <li><a href="#what_we_do">{menu.whatWeDo}</a></li>
+                            <li><a href="#inventors">{menu.team}</a></li>
                             {/* <li><a href="#">ЗВІТНІСТЬ</a></li> */}
-                            <li><a href="#">{menu.partners}</a></li>
-                            <li><a href="#">{menu.contacts}</a></li>
+                            <li><a href="#partners">{menu.partners}</a></li>
+                            <li><a href="#contacts">{menu.contacts}</a></li>
                         </ul>
                     </div>
                 </div>

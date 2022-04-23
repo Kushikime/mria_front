@@ -22,7 +22,9 @@
     font-family: 'Gilroy-Light';
     src: url("/assets/fonts/Gilroy/Gilroy-Light.otf");
 }
-
+html {
+    scroll-behavior: smooth;
+}
 html, body {
     display: flex;
     padding: 0;

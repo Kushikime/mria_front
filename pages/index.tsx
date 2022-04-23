@@ -112,12 +112,12 @@ const content = {
         cards: [
           {
             name: 'ANDREY KOSTYRA',
-            img: '/assets/images/team/ak.png',
+            img: '/assets/images/team/ak2.jpg',
             href: 'https://www.facebook.com/andrey.kostyra/'
           },
           {
             name: 'Pinzar Anton',
-            img: '/assets/images/team/pa.png',
+            img: '/assets/images/team/pa2.jpg',
             href: 'https://www.facebook.com/profile.php?id=100008596541850'
           },
           {
@@ -231,12 +231,12 @@ const content = {
       cards: [
         {
           name: 'Костира Андрій',
-          img: '/assets/images/team/ak.png',
+          img: '/assets/images/team/ak2.jpg',
           href: 'https://www.facebook.com/andrey.kostyra/'
         },
         {
           name: 'Пинзар Антон',
-          img: '/assets/images/team/pa.png',
+          img: '/assets/images/team/pa2.jpg',
           href: 'https://www.facebook.com/profile.php?id=100008596541850'
         },
         {
@@ -749,7 +749,7 @@ const Landing: NextPage = () => {
         </div>
       </div>
 
-      <footer className={styles.footer} id="partners">
+      <footer className={styles.footer} id="contacts">
           <div className={styles.wrap}>
               <div className={styles.logo}>
               <img src="/assets/images/logo1.svg" alt="До мрії лого" className="logo" />
