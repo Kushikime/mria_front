@@ -692,6 +692,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        z-index: 1000;
         .telegram,
         .instagram,
         .facebook {
@@ -890,7 +891,6 @@
             }
         }
         .partners {
-            z-index: 10 !important;
             .wrapper {
                 box-sizing: border-box;
                 padding: 0 25px;
@@ -1232,7 +1232,6 @@
         }
 
         .partners {
-            z-index: 10 !important;
             .wrapper {
                 box-sizing: border-box;
                 padding: 0 25px;
@@ -1297,54 +1296,6 @@
     }
 }
 
-// .zvit {
-//     .wrappers {
-//         .left {
-//             p.title {
-                    
-//             }
-//             p.subTitle {
-                    
-//             }
-
-//             p.some {
-
-//             }
-            
-//             .cards {
-//                 .card {
-//                     .left {
-//                         .top {
-//                             p {
-
-//                             }
-//                         }
-
-//                         .bottom {
-//                             p.date {
-
-//                             }
-//                             p.amount {
-                                
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-
-//         .right {
-//             .legends {
-                
-//             }
-//             .chartWrap {
-//                 .customPie {
-
-//                 }
-//             }
-//         }
-//     }
-// }
 
 @media (max-width: 560px) {
     .landing {

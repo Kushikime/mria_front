@@ -145,35 +145,27 @@ const Header = (props: IHeaderProps) => {
 
                 <div className={styles.bottom}>
                     <div className={styles.socialFooter}>
-                        <Link href={'https://www.instagram.com/domrii.ua/'}>
-                            <div className={styles.instagram}>
-                            <img src="/assets/images/footerInsta.svg" alt="" />
-                            <span className={styles.before}></span>
-                            <span className={styles.after}></span>
-                            </div>
-                        </Link>
-
                         <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
                             <div className={styles.facebook}>
-                            <img src="/assets/images/footerFace.svg" alt="" />
-                            <span className={styles.before}></span>
-                            <span className={styles.after}></span>
+                            <img src="/assets/images/footerFaceBlack.svg" alt="" />
                             </div>
                         </Link>
 
                         <Link href={'https://t.me/do_mrii'}>
                             <div className={styles.telegram}>
-                            <img src="/assets/images/footerTelegram.svg" alt="" />
-                            <span className={styles.before}></span>
-                            <span className={styles.after}></span>
+                            <img src="/assets/images/footerTelegramBlack.svg" alt="" />
                             </div>
                         </Link>
 
                         <Link href={'#'}>
                             <div className={styles.twitter}>
-                            <img src="/assets/images/footerTwitter.svg" alt="" />
-                            <span className={styles.before}></span>
-                            <span className={styles.after}></span>
+                            <img src="/assets/images/footerTwitterBlack.svg" alt="" />
+                            </div>
+                        </Link>
+
+                        <Link href={'https://www.instagram.com/domrii.ua/'}>
+                            <div className={styles.instagram}>
+                            <img src="/assets/images/footerInstaBlack.svg" alt="" />
                             </div>
                         </Link>
                     </div>  

@@ -273,9 +273,10 @@
                         height: 3px;
                         position: relative;
                         transition: 0;
-                        *{transition: 0.4s;}
+                        transition: all .3s ease-in-out;
                         background-color: rgba(255,255,255,1);
                         &::after, &::before {
+                            transition: all .5s ease-in-out;
                             content: '';
                             position: absolute;
                             width: 36px;
@@ -283,10 +284,12 @@
                             background-color: rgba(255,255,255,1);
                         }
                         &::before {
-                            transform: translateY(-10px);
+                            transform: rotate(-0deg);
+                            top: -10px;
                         }
                         &::after {
-                            transform: translateY(10px);
+                            top: 10px;
+                            transform: rotate(0deg);
                         }
                     }
                     &:hover {
@@ -308,11 +311,14 @@
                             
                         transition: 0.4s;
                         }
+                        transform: rotate(180deg);
                         &::before {
-                            transform: rotate(-45deg)
+                            transform: rotate(-45deg);
+                            top:0;
                         }
                         &::after {
-                            transform: rotate(45deg)
+                            transform: rotate(45deg);
+                            top:0;
                         }
                     }
                 }
@@ -447,9 +453,27 @@
 
             .bottom {
                 min-height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 border-top: 3px solid #000;
                 .socialFooter {
-                    
+                    display: flex;
+                    align-items: center;
+
+                    .instagram, .facebook, .telegram, .twitter {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {
+                            
+                        width: 34px;
+                        }
+                    }
+    
+                    .twitter, .facebook, .telegram {
+                        margin-right: 16px;
+                    }
                 }
             }
             
@@ -478,6 +502,111 @@
                 }
 
             }
+        }
+
+        .mobileMenu {
+            .top {
+                padding: 0 25px;
+                width: 100%;
+                min-height: 72px;
+                display: flex;
+                align-items: center;
+                border-bottom: 3px solid #000;
+            }
+            .content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        list-style: none;
+                        text-align: center;
+                        a {
+                            color: #000;
+                            font-family: 'jetBrains', sans-serif;
+                            text-transform: uppercase;
+                            font-size: 32px;
+                            text-align: center;
+                            text-decoration: none;
+                        }
+                        
+                        margin-bottom: 16px;
+                    }
+                }
+                .btn {
+                    border: none;
+                    background-color: transparent;
+                    
+                    .gradientBorder {
+                        margin-top: 20px;
+                        --border-width: 4px;
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-family: Lato, sans-serif;
+                        font-size: 2.5rem;
+                        text-transform: uppercase;
+                        color: white;
+                        background: rgba(31, 31, 31, 1);
+                        transition: 0.2s linear;
+                        border-radius: 0;
+                        padding: 14px 50px;
+                        font-size: 22px;                  
+                        color: #fff;  
+                        &::after {
+                          position: absolute;
+                          content: "";
+                          top: calc(-1 * var(--border-width));
+                          left: calc(-1 * var(--border-width));
+                          z-index: -1;
+                          width: calc(100% + var(--border-width) * 2);
+                          height: calc(100% + var(--border-width) * 2);
+                          background: linear-gradient(
+                            90deg,
+                            rgba(13, 101, 188, 1),
+                            rgba(255, 211, 13, 1),
+                            rgba(13, 101, 188, 1),
+                            rgba(255, 211, 13, 1)
+                          );
+                          background-size: 400% 400%;
+                          background-position: 0% 0%;
+                          border-radius: 0;
+                          animation: moveGradient 8s alternate infinite;
+                        }
+                        img {
+                            width: 28px;
+                            margin-left: 20px;
+                            margin-right: -10px;
+                        }
+                        button {
+                            background-color: transparent;
+                            text-transform: uppercase;
+                            // border: 6px solid;
+                            // border-image-slice: 1;
+                            // border-width: 4px;
+                            // border-image-source: linear-gradient(to left, rgba(13, 101, 188, 1), rgba(255, 211, 13, 1));
+                            padding: 10px 40px;
+                            font-size: 18px;                  
+                            color: #fff;  
+                            border:none;
+                            // animation: borderColor infinite;
+                            // animation: borderColor 3s infinite;
+                        }
+                    }
+                    &:hover {
+                        cursor: pointer;
+                        .gradientBorder {
+                            background: rgba(0, 0, 0, 0);
+                        }
+                    }
+                }
+            }
+
+
+            
         }
     }
 }
