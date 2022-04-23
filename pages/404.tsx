@@ -6,7 +6,9 @@ const Page404: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/');
+    if(router) {
+      router.push('/');
+    }
   }, []);
 
   return null;

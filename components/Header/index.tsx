@@ -90,8 +90,8 @@ const Header = (props: IHeaderProps) => {
                             <ul>
                                 {
                                     locales.filter(item => item !== locale).map((lang, index) => {
-                                        return <Link href={'/'} locale={lang}>
-                                            <li onClick={(e) => {onLangSelect(lang)}} key={`dropDown_${lang}_${index}`}>
+                                        return <Link href={'/'} locale={lang} key={`dropDown_${lang}_${index}`}>
+                                            <li onClick={(e) => {onLangSelect(lang)}}>
                                                 <p>{lang.toLocaleUpperCase()}</p>
                                             </li>
                                         </Link>
