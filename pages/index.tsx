@@ -384,7 +384,7 @@ const Landing: NextPage = () => {
   useEffect(() => {
     setSocketActive(true);
     
-    const newSocket = io('http://54.93.88.36:17180', {
+    const newSocket = io(process.env.NEXT_PUBLIC_BASE_URL, {
       transports: [
         'websocket'
       ]
