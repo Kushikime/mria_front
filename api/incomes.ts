@@ -2,7 +2,9 @@ import clientAPI from '.';
 import { IncomeUpdate } from '../types/incomes';
 
 export const getIncomes = (page = 1, perPage = 5) => {
-  return clientAPI.get(`/incomes?page=${page}&perPage=${perPage}`);
+  return clientAPI.get(`/incomes?page=${page}&perPage=${perPage}`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('@accessToken')}` },
+  });
 };
 
 export const createIncome = (owner: string, amount: number, currency: string) => {
