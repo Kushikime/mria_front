@@ -2,7 +2,9 @@ import clientAPI from '.';
 import { WithdrawalCreate, WithdrawalUpdate } from '../types/withdrawals';
 
 export const getWithdrawals = (page = 1, perPage = 5) => {
-  return clientAPI.get(`/withdrawals?page=${page}&perPage=${perPage}`);
+  return clientAPI.get(`/withdrawals?page=${page}&perPage=${perPage}`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('@accessToken')}` },
+  });
 };
 
 export const createWithdrawal = (withdrawal: WithdrawalCreate) => {
