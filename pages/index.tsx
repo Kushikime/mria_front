@@ -111,14 +111,14 @@ const content = {
         subTitle: '"Do Mriyi" has about 100 volunteers who perform their duties in several countries (Ukraine, Romania, Germany, Belgium, Ireland, etc.).',
         cards: [
           {
-            name: 'ANDREY KOSTYRA',
-            img: '/assets/images/team/ak2.jpg',
-            href: 'https://www.facebook.com/andrey.kostyra/'
-          },
-          {
             name: 'Pinzar Anton',
             img: '/assets/images/team/pa2.jpg',
             href: 'https://www.facebook.com/profile.php?id=100008596541850'
+          },
+          {
+            name: 'Kostyra Andrey',
+            img: '/assets/images/team/ak2.jpg',
+            href: 'https://www.facebook.com/andrey.kostyra/'
           },
           {
             name: 'Hnatchuk Julia',
@@ -230,14 +230,14 @@ const content = {
       subTitle: 'Всього ВГ “ДО МРІЇ” налічує близько 100 волонтерів, які виконують різні функції на території різних країн (Україна Румунія, Німеччина, Бельгія, Ірландія  та ін.)',
       cards: [
         {
-          name: 'Костира Андрій',
-          img: '/assets/images/team/ak2.jpg',
-          href: 'https://www.facebook.com/andrey.kostyra/'
-        },
-        {
           name: 'Пинзар Антон',
           img: '/assets/images/team/pa2.jpg',
           href: 'https://www.facebook.com/profile.php?id=100008596541850'
+        },
+        {
+          name: 'Костира Андрій',
+          img: '/assets/images/team/ak2.jpg',
+          href: 'https://www.facebook.com/andrey.kostyra/'
         },
         {
           name: 'Гнатчук Юлія',
@@ -348,10 +348,28 @@ const Landing: NextPage = () => {
         ],
         borderWidth: 1,
       },
-
+      
     ],
     onClick: graphClickEvent
   };
+
+  const pieOptions = {
+      legend: {
+          display: true,
+      },
+      legendCallback: (chart: any) => {
+          console.log("chart:" , chart)
+          // const dataset = chart.data.datasets[0];
+          // const total = sumBy(dataset.data, number => parseInt(number as any, 10));
+
+          // return dataset.data.map((value, index) => {
+          //     const outputValue = dataset.percentage ? valueAsPercentage(value, total) : value;
+          //     return `<li>
+          //         <em>${outputValue}</em>
+          //     </li>`;
+          // }).join('');                    
+      }
+  }
 
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [incomesPages, setIncomesPages] = useState(0);
@@ -384,14 +402,14 @@ const Landing: NextPage = () => {
   useEffect(() => {
     setSocketActive(true);
     
-    const newSocket = io(process.env.NEXT_PUBLIC_BASE_URL, {
+    const newSocket = io(`${process.env.NEXT_PUBLIC_BASE_URL}/socket`, {
       transports: [
         'websocket'
       ]
     });
 
     newSocket.on("connect", () => {
-      console.log("CONNECT")
+      console.log("CONNECTED ON: ", `${process.env.NEXT_PUBLIC_BASE_URL}/socket`)
     });
 
     const handleCurrencyIncome = (income: IncomeToast) => {
@@ -666,7 +684,9 @@ const Landing: NextPage = () => {
             <div className={styles.right}>
               <div className={styles.legends}></div>
               <div className={styles.chartWrap}>
-                <Pie className={styles.customPie} data={pieData} />
+                <Pie className={styles.customPie} data={pieData} options={{
+                  
+                }} />
               </div>
             </div>
           </div>
