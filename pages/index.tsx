@@ -402,7 +402,7 @@ const Landing: NextPage = () => {
   useEffect(() => {
     setSocketActive(true);
     
-    const newSocket = io(`${process.env.NEXT_PUBLIC_BASE_URL}/socket`, {
+    const newSocket = io(`https://api.domrii.com.ua/socket`, {
       transports: [
         'websocket'
       ]
