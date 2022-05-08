@@ -186,13 +186,13 @@ const Donate: NextPage = () => {
             <div className={styles.menu}>
               <ul>
                 <li>
-                    <a href="/#who_we_are">{menu.whoWeAre}</a>
+                    <Link passHref href="/#who_we_are">{menu.whoWeAre}</Link>
                 </li>
-                <li><a href="/#what_we_do">{menu.whatWeDo}</a></li>
-                <li><a href="/#inventors">{menu.team}</a></li>
+                <li><Link passHref href="/#what_we_do">{menu.whatWeDo}</Link></li>
+                <li><Link passHref href="/#inventors">{menu.team}</Link></li>
                 {/* <li><a href="#">ЗВІТНІСТЬ</a></li> */}
-                <li><a href="/#partners">{menu.partners}</a></li>
-                <li><a href="/#contacts">{menu.contacts}</a></li>
+                <li><Link passHref href="/#partners">{menu.partners}</Link></li>
+                <li><Link passHref href="/#contacts">{menu.contacts}</Link></li>
               </ul>
             </div>
             <div className={styles.btn}>

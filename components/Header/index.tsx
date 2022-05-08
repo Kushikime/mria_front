@@ -68,13 +68,13 @@ const Header = (props: IHeaderProps) => {
                     <div className={styles.content}>
                         <ul>
                             <li>
-                                <a href="/#who_we_are">{menu.whoWeAre}</a>
+                                <Link href="/#who_we_are">{menu.whoWeAre}</Link>
                             </li>
-                            <li><a href="/#what_we_do">{menu.whatWeDo}</a></li>
-                            <li><a href="/#inventors">{menu.team}</a></li>
+                            <li><Link href="/#what_we_do">{menu.whatWeDo}</Link></li>
+                            <li><Link href="/#inventors">{menu.team}</Link></li>
                             {/* <li><a href="#">ЗВІТНІСТЬ</a></li> */}
-                            <li><a href="/#partners">{menu.partners}</a></li>
-                            <li><a href="/#contacts">{menu.contacts}</a></li>
+                            <li><Link href="/#partners">{menu.partners}</Link></li>
+                            <li><Link href="/#contacts">{menu.contacts}</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ const Header = (props: IHeaderProps) => {
                             <ul>
                                 {
                                     locales.filter(item => item !== locale).map((lang, index) => {
-                                        return <Link href={'/'} locale={lang} key={`dropDown_${lang}_${index}`}>
+                                        return <Link passHref href={'/'} locale={lang} key={`dropDown_${lang}_${index}`}>
                                             <li onClick={(e) => {onLangSelect(lang)}}>
                                                 <p>{lang.toLocaleUpperCase()}</p>
                                             </li>
@@ -102,7 +102,7 @@ const Header = (props: IHeaderProps) => {
                             <></>
                         }
                     </div>
-                    <Link href='donate'>
+                    <Link href='donate' passHref>
                         <div className={styles.btn}>
                             <div className={styles.gradientBorder}>
                                 {/* <button></button> */}
@@ -127,15 +127,15 @@ const Header = (props: IHeaderProps) => {
                 <div className={styles.content}>
                     <ul>
                         <li onClick={mobileMenuToggler}>
-                            <a href="/#who_we_are">{menu.whoWeAre}</a>
+                            <Link passHref href="/#who_we_are">{menu.whoWeAre}</Link>
                         </li>
-                        <li onClick={mobileMenuToggler}><a href="/#what_we_do">{menu.whatWeDo}</a></li>
-                        <li onClick={mobileMenuToggler}><a href="/#inventors">{menu.team}</a></li>
+                        <li onClick={mobileMenuToggler}><Link passHref href="/#what_we_do">{menu.whatWeDo}</Link></li>
+                        <li onClick={mobileMenuToggler}><Link passHref href="/#inventors">{menu.team}</Link></li>
                         {/* <li><a href="#">ЗВІТНІСТЬ</a></li> */}
-                        <li onClick={mobileMenuToggler}><a href="/#partners">{menu.partners}</a></li>
-                        <li onClick={mobileMenuToggler}><a href="/#contacts">{menu.contacts}</a></li>
+                        <li onClick={mobileMenuToggler}><Link passHref href="/#partners">{menu.partners}</Link></li>
+                        <li onClick={mobileMenuToggler}><Link passHref href="/#contacts">{menu.contacts}</Link></li>
                     </ul>
-                    <Link href='donate'>
+                    <Link passHref href='donate'>
                         <div className={styles.btn}>
                             <div className={styles.gradientBorder}>
                                 {/* <button></button> */}
@@ -148,25 +148,25 @@ const Header = (props: IHeaderProps) => {
 
                 <div className={styles.bottom}>
                     <div className={styles.socialFooter}>
-                        <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
+                        <Link passHref href={'https://www.facebook.com/vg.do.mrii.ua/'}>
                             <div className={styles.facebook}>
                             <img src="/assets/images/footerFaceBlack.svg" alt="" />
                             </div>
                         </Link>
 
-                        <Link href={'https://t.me/do_mrii'}>
+                        <Link passHref href={'https://t.me/do_mrii'}>
                             <div className={styles.telegram}>
                             <img src="/assets/images/footerTelegramBlack.svg" alt="" />
                             </div>
                         </Link>
 
-                        <Link href={'https://twitter.com/do_mrii'}>
+                        <Link passHref href={'https://twitter.com/do_mrii'}>
                             <div className={styles.twitter}>
                             <img src="/assets/images/footerTwitterBlack.svg" alt="" />
                             </div>
                         </Link>
 
-                        <Link href={'https://www.instagram.com/domrii.ua/'}>
+                        <Link passHref href={'https://www.instagram.com/domrii.ua/'}>
                             <div className={styles.instagram}>
                             <img src="/assets/images/footerInstaBlack.svg" alt="" />
                             </div>
