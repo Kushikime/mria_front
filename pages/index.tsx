@@ -46,6 +46,17 @@ interface IStatisticsIncome {
   }
 }
 
+interface IStatisticsWidthdraw{
+  record: {
+    transports: number
+    militaryMedicine: number
+    other: number
+    techStuff: number
+    house: number
+    ammo: number
+  }
+}
+
 const content = {
   "en": {
       menu: {
@@ -132,7 +143,7 @@ const content = {
           },
           {
             name: 'Pinzar Igor',
-            img: '/assets/images/team/pi.png',
+            img: '/assets/images/team/pi.jpg',
             href: 'https://www.facebook.com/profile.php?id=100005458994736'
           },
           {
@@ -146,8 +157,8 @@ const content = {
             href: 'https://www.facebook.com/maryna.mykhailuk'
           },
           {
-            name: 'Vitaliy Kordunyan',
-            img: '/assets/images/plotnikova.png',
+            name: 'Pinzar Roman',
+            img: '/assets/images/team/rp.jpg',
             href: ''
           }
         ]
@@ -159,7 +170,13 @@ const content = {
           last: 'Last',
           incomes: 'incomes',
           outcomes: 'expenses'
-        }
+        },
+        ammoText: 'Tactical equipment',
+        houseText: 'Household items',
+        medicineText: 'Medicines',
+        otherText: 'Other',
+        techText: 'Technical means',
+        transportsText: 'Transportation costs'
       },
       partners: {
         title: 'Partners',
@@ -251,7 +268,7 @@ const content = {
         },
         {
           name: 'Пинзар Ігор',
-          img: '/assets/images/team/pi.png',
+          img: '/assets/images/team/pi.jpg',
           href: 'https://www.facebook.com/profile.php?id=100005458994736'
         },
         {
@@ -265,8 +282,8 @@ const content = {
           href: 'https://www.facebook.com/maryna.mykhailuk'
         },
         {
-          name: 'Кордунян Віталій',
-          img: '/assets/images/plotnikova.png',
+          name: 'Пинзар Роман',
+          img: '/assets/images/team/rp.jpg',
           href: ''
         }
       ]
@@ -278,7 +295,13 @@ const content = {
         last: 'Останні',
         incomes: 'внески',
         outcomes: 'витрати'
-      }
+      },
+      ammoText: 'Тактичне спорядження',
+      houseText: 'Предмети побуту',
+      medicineText: 'Лікарські засоби',
+      otherText: 'Інше',
+      techText: 'Технічні засоби',
+      transportsText: 'Транспортні витрати'
     },
     partners: {
       title: 'Партнери',
@@ -319,6 +342,15 @@ const Landing: NextPage = () => {
   const [eur, setEur] = useState(0);
   const [uah, setUah] = useState(0);
 
+  //WITHDRAWALS
+  const [ammo, setAmmo] = useState(0);
+  const [house, setHouse] = useState(0);
+  const [medicine, setMedicine] = useState(0);
+  const [other, setOther] = useState(0);
+  const [tech, setTech] = useState(0);
+  const [transports, setTransports] = useState(0);
+
+
 
   // const [incomesPage, setIncomesPage] = useState(0);
   
@@ -353,6 +385,37 @@ const Landing: NextPage = () => {
     onClick: graphClickEvent
   };
 
+
+
+  const withDrawPieData = {
+    labels: [zvit.ammoText, zvit.houseText, zvit.medicineText, zvit.otherText, zvit.techText, zvit.transportsText],
+    datasets: [
+      {
+        label: '#',
+        data: [ammo, house, medicine, other, tech, transports],
+        backgroundColor: [
+          'rgba(239, 68, 68, 0.95)',
+          'rgba(239, 68, 68, 0.9)',
+          'rgba(239, 68, 68, 0.85)',
+          'rgba(239, 68, 68, 0.8)',
+          'rgba(239, 68, 68, 0.75)',
+          'rgba(239, 68, 68, 0.7)'
+        ],
+        borderColor: [
+          'rgba(239, 68, 68,0.95)',
+          'rgba(239, 68, 68, 0.9)',
+          'rgba(239, 68, 68, 0.85)',
+          'rgba(239, 68, 68, 0.8)',
+          'rgba(239, 68, 68, 0.75)',
+          'rgba(239, 68, 68, 0.7)'
+        ],
+        borderWidth: 1,
+      },
+      
+    ],
+    onClick: graphClickEvent
+  };
+
   const pieOptions = {
       legend: {
           display: true,
@@ -374,6 +437,10 @@ const Landing: NextPage = () => {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [incomesPages, setIncomesPages] = useState(0);
   const [incomePageIndex, setIncomePageIndex] = useState(1);
+
+  const [withdrawPages, setWithdrawPages] = useState(0);
+  const [withdrawPageIndex, setWithdrawPageIndex] = useState(1);
+
   const [incomeFetchThrottle, setIncomeFetchThrottle] = useState<any>();
   const incomesRef = useRef<HTMLDivElement>(null);
   // const { height, width } = useWindowDimensions();
@@ -447,12 +514,21 @@ const Landing: NextPage = () => {
     }
   }, []);
 
+
+
   const [statisticIncome, setStatisticIncome] = useState<IStatisticsIncome>()
   const [incomes, setIncomes] = useState<Array<IncomeToast>>([])
 
+  const [statisticWithdraw, setStatisticWithdraw] = useState<IStatisticsWidthdraw>()
+  // const [withdrawals, setWithdrawals] = useState<Array<WithdrawToast>>([])
+  const [withdrawals, setWithdrawals] = useState<Array<any>>([])
+  
   const getStatisticIncomes = async () => {
     const data = await clientAPI.get('/statistics/incomes');
+    const dataWithdrawals = await clientAPI.get('/statistics/withdrawals');
+
     setStatisticIncome(data.data)
+    setStatisticWithdraw(dataWithdrawals.data)
   }
 
   const getIncomes = async (page?: number) => {
@@ -460,13 +536,14 @@ const Landing: NextPage = () => {
     setIncomesPages(data.data.pagination.pages)
     setIncomes(prev => [...prev, ...data.data.records])
   }
+
+  const getWithdrawals = async (page?: number) => {
+    const data = await clientAPI.get(`withdrawals?perPage=6${page ? '&page='+page : ''}`);
+    setWithdrawPages(data.data.pagination.pages)
+    setWithdrawals(prev => [...prev, ...data.data.records])
+  }
   
-  useEffect(()=>{
-    /*
-    Query logic
-    */
-    console.log('i fire once');
-},[]);
+
   useEffect(() => {
     // let response;
     // clientAPI.get('/incomes').then(res => {
@@ -476,8 +553,11 @@ const Landing: NextPage = () => {
     // });
     
     if(!incomes.length) {
-      
       getIncomes()
+    }
+
+    if(!withdrawals.length) {
+      getWithdrawals()
     }
     
     getStatisticIncomes()
@@ -492,10 +572,27 @@ const Landing: NextPage = () => {
   }, [statisticIncome])
 
   useEffect(() => {
+    if(statisticWithdraw) {
+      setAmmo(statisticWithdraw.record.ammo)
+      setHouse(statisticWithdraw.record.house)
+      setMedicine(statisticWithdraw.record.militaryMedicine)
+      setOther(statisticWithdraw.record.other)
+      setTech(statisticWithdraw.record.techStuff)
+      setTransports(statisticWithdraw.record.transports)
+    }
+  }, [statisticWithdraw])
+
+  useEffect(() => {
     if(incomePageIndex > 1) {
       getIncomes(incomePageIndex)
     }
   }, [incomePageIndex])
+
+  useEffect(() => {
+    if(withdrawPageIndex > 1) {
+      getWithdrawals(withdrawPageIndex)
+    }
+  }, [withdrawPageIndex])
 
 
   const onIncomesScroll = async () => {
@@ -514,6 +611,7 @@ const Landing: NextPage = () => {
   const chartRef = useRef<ChartJS>(null);
 
   const [chartState, setChartState] = useState<'incomes' | 'outcomes'>('incomes');
+  const [chartSelectorState, setChartSelectorState] = useState(false);
 
   const onClick = (event: MouseEvent<HTMLCanvasElement>) => {
     const { current: chart } = chartRef;
@@ -647,11 +745,65 @@ const Landing: NextPage = () => {
               <p className={styles.title}>{zvit.title}</p>
               <p className={styles.subTitle}>{zvit.subTitle}</p>
               
-              <p className={styles.some}>{zvit.switcher.last} <span className={styles.selector}>{chartState === 'incomes' ? zvit.switcher.incomes : zvit.switcher.outcomes} <span className={styles.arrow}></span></span></p>
+              <div className={styles.some}>
+                {zvit.switcher.last}
+                <div className={styles.ddSwitch} onClick={() => {setChartSelectorState(prev => !prev)}}>
+                  <span 
+                    className={`${styles.selector} ${chartState === 'incomes' ? '' : styles.red}`}
+                  >
+                    {chartState === 'incomes' ? zvit.switcher.incomes : zvit.switcher.outcomes}
+                    <span className={styles.arrow}></span>
+                  </span>
+
+                  {
+                    chartSelectorState ?
+                    <span 
+                      className={`${styles.selector} ${styles.absolutePosition} ${chartState === 'incomes' ? '' : styles.red}`}
+                      onClick={() => {
+                        setChartState(chartState === 'incomes' ? 'outcomes' : 'incomes')
+                      }}
+                    >
+                      {chartState === 'incomes' ? zvit.switcher.outcomes : zvit.switcher.incomes}
+                    </span>
+                    :
+                    <></>
+                  }
+                </div>
+              </div>
             
               <div className={styles.cards} onScroll={(e) => {onIncomesScroll()}} ref={incomesRef}>
                 {
-                  incomes.length ? incomes.filter((item, index) => {
+                  chartState === 'incomes' ?
+                    incomes.length ? 
+                    incomes.filter((item, index) => {
+                      let changed = item
+  
+                      if(index > 4) {
+                        changed.hide = true
+                      }
+  
+                      return changed
+                    }).map((income, index) => {
+                      return (
+                        <div className={`${styles.card} ${income.hide ? styles.hide : ''}`} key={`income_${index}`}>
+                          <div className={styles.left}>
+                              <div className={styles.top}>
+                                  <p>{income.owner ? income.owner : 'Anonymous'}</p>
+                              </div>
+        
+                              <div className={styles.bottom}>
+                                  <p className={styles.date}>{income.createdAt ? new Date(income.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}</p>
+                                  <p className={styles.amount}>+{income.amount}{currencies[income.currencyName]}</p>
+                              </div>
+                          </div>
+                        </div>
+                      )
+                    })
+                    :
+                    null
+                  :
+                  withdrawals.length ? 
+                  withdrawals.filter((item, index) => {
                     let changed = item
 
                     if(index > 4) {
@@ -661,7 +813,7 @@ const Landing: NextPage = () => {
                     return changed
                   }).map((income, index) => {
                     return (
-                      <div className={`${styles.card} ${income.hide ? styles.hide : ''}`} key={`income_${index}`}>
+                      <div className={`${styles.card} ${styles.red} ${income.hide ? styles.hide : ''}`} key={`income_${index}`}>
                         <div className={styles.left}>
                             <div className={styles.top}>
                                 <p>{income.owner ? income.owner : 'Anonymous'}</p>
@@ -669,7 +821,7 @@ const Landing: NextPage = () => {
       
                             <div className={styles.bottom}>
                                 <p className={styles.date}>{income.createdAt ? new Date(income.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}</p>
-                                <p className={styles.amount}>+{income.amount}{currencies[income.currencyName]}</p>
+                                <p className={styles.amount}>-{income.amount}{currencies[income.currencyName]}</p>
                             </div>
                         </div>
                       </div>
@@ -678,15 +830,19 @@ const Landing: NextPage = () => {
                   :
                   null
                 }
+
               </div>
             </div>
 
             <div className={styles.right}>
               <div className={styles.legends}></div>
               <div className={styles.chartWrap}>
-                <Pie className={styles.customPie} data={pieData} options={{
-                  
-                }} />
+                {
+                  chartState === 'incomes' ? 
+                    <Pie className={styles.customPie} data={pieData} />
+                    :
+                    <Pie className={styles.customPie} data={withDrawPieData} />
+                }
               </div>
             </div>
           </div>
@@ -815,7 +971,7 @@ const Landing: NextPage = () => {
                 </div>
               </Link>
 
-              <Link href={'#'}>
+              <Link href={'https://twitter.com/do_mrii'}>
                 <div className={styles.twitter}>
                   <img src="/assets/images/footerTwitter.svg" alt="" />
                   <span className={styles.before}></span>
@@ -873,7 +1029,7 @@ const Landing: NextPage = () => {
           </div>
         </Link>
 
-        <Link href={'https://www.facebook.com/vg.do.mrii.ua/'}>
+        <Link href={'https://twitter.com/do_mrii'}>
           <div className={styles.facebook}>
             <img src="/assets/images/twitter.png" alt="" />
             <span className={styles.before}></span>

@@ -68,13 +68,13 @@ const Header = (props: IHeaderProps) => {
                     <div className={styles.content}>
                         <ul>
                             <li>
-                                <a href="#who_we_are">{menu.whoWeAre}</a>
+                                <a href="/#who_we_are">{menu.whoWeAre}</a>
                             </li>
-                            <li><a href="#what_we_do">{menu.whatWeDo}</a></li>
-                            <li><a href="#inventors">{menu.team}</a></li>
+                            <li><a href="/#what_we_do">{menu.whatWeDo}</a></li>
+                            <li><a href="/#inventors">{menu.team}</a></li>
                             {/* <li><a href="#">ЗВІТНІСТЬ</a></li> */}
-                            <li><a href="#partners">{menu.partners}</a></li>
-                            <li><a href="#contacts">{menu.contacts}</a></li>
+                            <li><a href="/#partners">{menu.partners}</a></li>
+                            <li><a href="/#contacts">{menu.contacts}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -102,13 +102,15 @@ const Header = (props: IHeaderProps) => {
                             <></>
                         }
                     </div>
-                    <div className={styles.btn}>
-                        <div className={styles.gradientBorder}>
-                            {/* <button></button> */}
-                            <span>{helpBtn}</span>
-                            <img src="/assets/images/ua_flag.png" alt="" />    
+                    <Link href='donate'>
+                        <div className={styles.btn}>
+                            <div className={styles.gradientBorder}>
+                                {/* <button></button> */}
+                                <span>{helpBtn}</span>
+                                <img src="/assets/images/ua_flag.png" alt="" />    
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                     {/* mobileMenuState */}
                     <div onClick={mobileMenuToggler} className={`${styles.mobileMenuToggler} ${mobileMenuState ? styles.activeMobileMenuToggler : ''}`}>
                         <span></span>
@@ -125,22 +127,23 @@ const Header = (props: IHeaderProps) => {
                 <div className={styles.content}>
                     <ul>
                         <li onClick={mobileMenuToggler}>
-                            <a href="#who_we_are">{menu.whoWeAre}</a>
+                            <a href="/#who_we_are">{menu.whoWeAre}</a>
                         </li>
-                        <li onClick={mobileMenuToggler}><a href="#what_we_do">{menu.whatWeDo}</a></li>
-                        <li onClick={mobileMenuToggler}><a href="#inventors">{menu.team}</a></li>
+                        <li onClick={mobileMenuToggler}><a href="/#what_we_do">{menu.whatWeDo}</a></li>
+                        <li onClick={mobileMenuToggler}><a href="/#inventors">{menu.team}</a></li>
                         {/* <li><a href="#">ЗВІТНІСТЬ</a></li> */}
-                        <li onClick={mobileMenuToggler}><a href="#partners">{menu.partners}</a></li>
-                        <li onClick={mobileMenuToggler}><a href="#contacts">{menu.contacts}</a></li>
+                        <li onClick={mobileMenuToggler}><a href="/#partners">{menu.partners}</a></li>
+                        <li onClick={mobileMenuToggler}><a href="/#contacts">{menu.contacts}</a></li>
                     </ul>
-
-                    <div className={styles.btn}>
-                        <div className={styles.gradientBorder}>
-                            {/* <button></button> */}
-                            <span>{helpBtn}</span>
-                            <img src="/assets/images/ua_flag.png" alt="" />    
+                    <Link href='donate'>
+                        <div className={styles.btn}>
+                            <div className={styles.gradientBorder}>
+                                {/* <button></button> */}
+                                <span>{helpBtn}</span>
+                                <img src="/assets/images/ua_flag.png" alt="" />    
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className={styles.bottom}>
@@ -157,7 +160,7 @@ const Header = (props: IHeaderProps) => {
                             </div>
                         </Link>
 
-                        <Link href={'#'}>
+                        <Link href={'https://twitter.com/do_mrii'}>
                             <div className={styles.twitter}>
                             <img src="/assets/images/footerTwitterBlack.svg" alt="" />
                             </div>

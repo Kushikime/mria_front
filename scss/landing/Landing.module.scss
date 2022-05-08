@@ -297,10 +297,24 @@
                     font-size: 36px;
                     padding: 0;
                     margin: 30px 0 20px;
+                    display: flex;
+                    
+                    max-width: 170px;
+                    .ddSwitch {
+                        display: flex;
+                        flex-direction: column;
+                        max-width: 200px;
+                    }
                     .selector {
+                        margin-left: 16px;
+                        margin-top: -4px;
+                        width: 100%;
                         color: #fff;
                         background-color: #59aa76;
                         padding: 5px 10px;
+                        justify-content: space-between;
+                        display: flex;
+                        align-items: center;
                         &:hover {
                             cursor: pointer;
                         }
@@ -315,6 +329,14 @@
                             margin-left: 5px;
                             line-height: 0;
                         }
+                    }
+                    .red {
+                        background-color: #E93B3B;
+                    }
+                    position: relative;
+                    .absolutePosition {
+                        bottom: -58px;
+                        position: absolute;
                     }
                 }
                 .cards {
@@ -402,6 +424,16 @@
                         }
                         &:hover {
                             cursor: pointer;
+                        }
+                    }
+
+                    .red {
+                        .left {
+                            .bottom {
+                                .amount {
+                                    color: #E93B3B;
+                                }
+                            }
                         }
                     }
                 }
