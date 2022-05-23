@@ -52,25 +52,49 @@
     }
     .description {
       width: 100%;
+      position: relative;
       border: 1px solid #cbd5e1;
       border-radius: 16px;
       padding: 12px 56px 12px 16px;
       margin-top: 4px;
       box-sizing: border-box;
+      .saveImg {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        animation: flickerAnimation 2s infinite;
+      }
       .line {
         display: flex;
         flex-direction: row;
+        padding: 4px;
         strong {
           font-family: 'dia';
+          padding: 4px 0;
         }
-        p {
+        input {
+          flex: 1;
           font-size: 16px;
           line-height: 19.19px;
           font-family: 'dia', sans-serif;
           color: '#00000060';
+          border: 0px;
+          padding: 4px 8px;
+          text-decoration: underline;
         }
       }
-      
     }
+  }
+}
+
+@keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
   }
 }

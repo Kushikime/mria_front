@@ -19,7 +19,7 @@ export const AdminHeader = ({ page }: Props) => {
       <div className={styles.titleContainer}>
         <div className={styles.title}>
           <p>{pageEls[0]}</p>
-          {page !== 'accounts' && <div className={`${styles.underline}` + ' ' + `${page === 'withdrawals' && styles.underlineRed}`}></div>}
+          {page !== 'accounts' && <div className={`${styles.underline}` + ' ' + `${page === 'expenses' && styles.underlineRed}`}></div>}
         </div>
         <img src={pageEls[1]} />
       </div>

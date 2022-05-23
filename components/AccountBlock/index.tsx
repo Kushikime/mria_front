@@ -10,9 +10,15 @@ interface Props {
 export const AccountBlock = ({ account }: Props) => {
   const [name, setName] = useState(account?.name || '');
   const [nameEditable, setNameEditable] = useState(false);
-
   const [address, setAddress] = useState(account?.address || '');
   const [addressEditable, setAddressEditable] = useState(false);
+  const [beneficiary, setBeneficiary] = useState(account?.beneficiary || '');
+  const [bankOfBeneficiary, setBankOfBeneficiary] = useState(account?.bankOfBeneficiary || '');
+  const [swiftCodeBic_1, setSwiftCodeBic_1] = useState(account?.swiftCodeBic_1 || '');
+  const [correspondentAccount, setCorrespondentAccount] = useState(account?.correspondentAccount || '');
+  const [intermediaryBank, setIntermediaryBank] = useState(account?.intermediaryBank || '');
+  const [swiftCodeBic_2, setSwiftCodeBic_2] = useState(account?.swiftCodeBic_2 || '');
+  const [isSaveActive, setIsSaveActive] = useState(false);
 
   const onChangeName = (e) => {
     e.preventDefault();
@@ -35,22 +41,39 @@ export const AccountBlock = ({ account }: Props) => {
     setAddressEditable(!addressEditable);
   };
 
+  const onChangeWrapper = (e, callBackFn) => {
+    e.preventDefault();
+    callBackFn();
+    setIsSaveActive(true);
+  };
+
   const prepareAndUpdate = useCallback(() => {
     const newAccount = {
       id: account.id.toString(),
       name: name,
       address: address,
-      beneficiary: account.beneficiary,
-      bankOfBeneficiary: account.bankOfBeneficiary,
-      swiftCodeBic_1: account.swiftCodeBic_1,
-      swiftCodeBic_2: account.swiftCodeBic_2,
-      correspondentAccount: account.correspondentAccount,
-      intermediaryBank: account.intermediaryBank,
+      beneficiary: beneficiary,
+      bankOfBeneficiary: bankOfBeneficiary,
+      swiftCodeBic_1: swiftCodeBic_1,
+      swiftCodeBic_2: swiftCodeBic_2,
+      correspondentAccount: correspondentAccount,
+      intermediaryBank: intermediaryBank,
     };
     updateCredentials(newAccount).then((res) => {
       console.log('credentials - update', res);
     });
-  }, [name, address]);
+    setIsSaveActive(false);
+  }, [
+    account.id,
+    name,
+    address,
+    beneficiary,
+    bankOfBeneficiary,
+    swiftCodeBic_1,
+    swiftCodeBic_2,
+    correspondentAccount,
+    intermediaryBank,
+  ]);
 
   useEffect(() => {
     const nameInput = document.getElementById('name_edit');
@@ -59,7 +82,7 @@ export const AccountBlock = ({ account }: Props) => {
     nameInput.addEventListener('keypress', function (event) {
       if (event.key === 'Enter') {
         event.preventDefault();
-        
+
         document.getElementById('name_btn').click();
       }
     });
@@ -94,7 +117,12 @@ export const AccountBlock = ({ account }: Props) => {
           value={name}
           onChange={onChangeName}
         />
-        <img id='name_btn' src={nameEditable ? '../assets/images/save.png' : '../assets/images/edit.svg'} alt={'edit'} onClick={onClickNameEdit} />
+        <img
+          id='name_btn'
+          src={nameEditable ? '../assets/images/save.png' : '../assets/images/edit.svg'}
+          alt={'edit'}
+          onClick={onClickNameEdit}
+        />
       </div>
       <div className={styles.fieldOne}>
         <p>Реквізити</p>
@@ -106,35 +134,72 @@ export const AccountBlock = ({ account }: Props) => {
           value={address}
           onChange={onChangeAddress}
         />
-        <img id='address_btn' src={addressEditable ? '../assets/images/save.png' : '../assets/images/edit.svg'} alt={'edit'} onClick={onClickAddressEdit} />
+        <img
+          id='address_btn'
+          src={addressEditable ? '../assets/images/save.png' : '../assets/images/edit.svg'}
+          alt={'edit'}
+          onClick={onClickAddressEdit}
+        />
       </div>
       {account.type === 'iban' && (
         <div className={styles.fieldTwo}>
           <p>Інше</p>
           <div className={styles.description}>
+            {isSaveActive && (
+              <img
+                className={styles.saveImg}
+                src={'../assets/images/save.png'}
+                alt={'edit'}
+                onClick={() => prepareAndUpdate()}
+              />
+            )}
             <div className={styles.line}>
               <strong>Beneficiary:&nbsp;</strong>
-              <p>{account.beneficiary}</p>
+              <input
+                type='text'
+                value={beneficiary}
+                onChange={(e) => onChangeWrapper(e, () => setBeneficiary(e.target.value))}
+              />
             </div>
             <div className={styles.line}>
               <strong>Bank of Beneficiary:&nbsp;</strong>
-              <p>{account.bankOfBeneficiary}</p>
+              <input
+                type='text'
+                value={bankOfBeneficiary}
+                onChange={(e) => onChangeWrapper(e, () => setBankOfBeneficiary(e.target.value))}
+              />
             </div>
             <div className={styles.line}>
               <strong>SWIFT CODE/BIC:&nbsp;</strong>
-              <p>{account.swiftCodeBic_1}</p>
+              <input
+                type='text'
+                value={swiftCodeBic_1}
+                onChange={(e) => onChangeWrapper(e, () => setSwiftCodeBic_1(e.target.value))}
+              />
             </div>
             <div className={styles.line}>
               <strong>Correspondent Account:&nbsp;</strong>
-              <p>{account.correspondentAccount}</p>
+              <input
+                type='text'
+                value={correspondentAccount}
+                onChange={(e) => onChangeWrapper(e, () => setCorrespondentAccount(e.target.value))}
+              />
             </div>
             <div className={styles.line}>
               <strong>Intermidiary Bank:&nbsp;</strong>
-              <p>{account.intermediaryBank}</p>
+              <input
+                type='text'
+                value={intermediaryBank}
+                onChange={(e) => onChangeWrapper(e, setIntermediaryBank(e.target.value))}
+              />
             </div>
             <div className={styles.line}>
               <strong>SWIFT CODE/BIC:&nbsp;</strong>
-              <p>{account.swiftCodeBic_2}</p>
+              <input
+                type='text'
+                value={swiftCodeBic_2}
+                onChange={(e) => onChangeWrapper(e, setSwiftCodeBic_2(e.target.value))}
+              />
             </div>
           </div>
         </div>

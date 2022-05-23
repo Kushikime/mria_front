@@ -6,13 +6,15 @@ export const SidePanel = () => {
   const router = useRouter();
 
   const onExitClick = () => {
-    signOut().then((resp) => {
-      console.log('signOut', resp);
-    }).finally(() => {
-      localStorage.clear();
-      router.push('/login');
-    });
-  }
+    signOut()
+      .then((resp) => {
+        console.log('signOut', resp);
+      })
+      .finally(() => {
+        localStorage.clear();
+        router.push('/login');
+      });
+  };
 
   return (
     <div className={styles.container}>
@@ -27,9 +29,7 @@ export const SidePanel = () => {
           </button>
         </div>
         <div className={styles.buttonContainer}>
-          <div
-            className={styles.active + ' ' + `${router.pathname.includes('incomes') && styles.activeVisible}`}
-          ></div>
+          <div className={styles.active + ' ' + `${router.pathname.includes('incomes') && styles.activeVisible}`}></div>
           <button onClick={() => router.push('/panel/incomes')}>
             <img src={'../assets/images/file-plus.svg'} />
             <p>Внески</p>
